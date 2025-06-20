@@ -1,12 +1,12 @@
 # Next.js & HeroUI Template
 
-This is a template for creating applications using Next.js 14 (app directory) and HeroUI (v2).
+This is a template for creating applications using Next.js 15 (app directory) and HeroUI (v2).
 
 [Try it on CodeSandbox](https://githubbox.com/heroui-inc/heroui/next-app-template)
 
 ## Technologies Used
 
-- [Next.js 14](https://nextjs.org/docs/getting-started)
+- [Next.js 15](https://nextjs.org/docs/getting-started)
 - [HeroUI v2](https://heroui.com/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Tailwind Variants](https://tailwind-variants.org)
@@ -48,6 +48,8 @@ public-hoist-pattern[]=*@heroui/*
 
 After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
 
-## License
 
-Licensed under the [MIT license](https://github.com/heroui-inc/next-app-template/blob/main/LICENSE).
+TODO:
+- fix navbar search
+- fix hero biar atas nya bener
+- ganti logo nya
