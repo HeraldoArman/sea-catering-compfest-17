@@ -36,7 +36,7 @@ export default function RootLayout({
         <Providers themeProps={{ attribute: "class", defaultTheme: "light", forcedTheme: "light" }}>
           <div className="relative flex flex-col h-screen">
             <Navbar />
-            <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">{children}</main>
+            <main className="flex-grow">{children}</main>
             <footer className="w-full bg-neutral-100 border-t border-neutral-200 py-6">
               <div className="container mx-auto max-w-7xl px-6">
                 <div className="flex flex-col md:flex-row justify-between items-center gap-6">

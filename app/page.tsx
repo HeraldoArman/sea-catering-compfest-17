@@ -1,17 +1,28 @@
-import { MealPlanDisplay } from "@/components/MealPlanDisplay"
-import { TestimonialsSection } from "@/components/TestimonialsSection"
-import Hero from "@/components/Hero"
+import { Hero } from "@/components/Hero";
+import { FeaturesSection } from "@/components/FeaturesSection";
+import { StatsSection } from "@/components/StatsSection";
+import { MealPlanShowcase } from "@/components/MealPlanShowcase";
+import { CTASection } from "@/components/CTASection";
+import { TestimonialsCarousel } from "@/components/TestimonialsCarousel";
 export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <Hero/>      
+      <Hero />
+      {/* Features Section */}
+      <FeaturesSection />
 
-      {/* Meal Plan Display Section */}
-      <MealPlanDisplay />
+      {/* Stats Section */}
+      <StatsSection />
 
-      {/* Testimonials Section */}
-      <TestimonialsSection />
+      {/* Meal Plan Showcase */}
+      <MealPlanShowcase />
+
+      {/* Testimonials Carousel */}
+      <TestimonialsCarousel />
+
+      {/* Call to Action Section */}
+      <CTASection />
     </div>
-  )
+  );
 }
