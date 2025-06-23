@@ -28,7 +28,6 @@ const viewport: Viewport = {
 function LayoutContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
-  // Pages where navbar should be hidden
   const hideNavbarPages = ["/sign-in", "/sign-up"];
   const shouldHideNavbar = hideNavbarPages.includes(pathname);
 

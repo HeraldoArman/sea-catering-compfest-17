@@ -3,7 +3,14 @@ import { motion } from "framer-motion";
 import NextLink from "next/link";
 import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
-export const LeftAuthForm = () => {
+
+interface LeftAuthFormProps {
+  title: string;
+  description: string;
+  imageurl: string;
+}
+
+export const LeftAuthForm = ({title, description, imageurl} : LeftAuthFormProps) => {
   return (
     <div>
       <motion.div
@@ -14,7 +21,8 @@ export const LeftAuthForm = () => {
       >
         <div className="relative h-[600px] rounded-3xl overflow-hidden shadow-2xl">
           <Image
-            src="https://cdn-abeco.nitrocdn.com/vMCLEGbZccgRIgpGXvgkDDYcPokgENUq/assets/images/optimized/rev-300bd7b/gatheringdreams.com/wp-content/uploads/2022/10/healthy-meal-prep-2022-main-low.jpg"
+            src = {imageurl}
+            // src="https://cdn-abeco.nitrocdn.com/vMCLEGbZccgRIgpGXvgkDDYcPokgENUq/assets/images/optimized/rev-300bd7b/gatheringdreams.com/wp-content/uploads/2022/10/healthy-meal-prep-2022-main-low.jpg"
             alt="Healthy meal"
             fill
             className="object-cover"
@@ -29,12 +37,10 @@ export const LeftAuthForm = () => {
               transition={{ delay: 0.5, duration: 0.8 }}
             >
               <h2 className="text-3xl font-bold mb-4">
-                Welcome Back to SEA Catering
+                {title}
               </h2>
               <p className="text-lg text-white/90 leading-relaxed">
-                Continue your healthy eating journey with personalized meal
-                plans, expert nutrition guidance, and delicious recipes crafted
-                just for you.
+                {description}
               </p>
             </motion.div>
           </div>
