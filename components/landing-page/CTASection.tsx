@@ -5,23 +5,16 @@ import type React from "react"
 import { motion } from "framer-motion"
 import { Button } from "@heroui/button"
 import { Card, CardBody } from "@heroui/card"
-import { Input } from "@heroui/input"
+import Link from "next/link"
 import { ArrowRight, Sparkles, Gift, Clock } from "lucide-react"
 import { useState } from "react"
 
 export const CTASection = () => {
   const [email, setEmail] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle email submission
-    console.log("Email submitted:", email)
-    setEmail("")
-  }
 
   return (
     <section className="py-24 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 relative overflow-hidden">
-      {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           animate={{
@@ -109,7 +102,6 @@ export const CTASection = () => {
             </div>
           </motion.div>
 
-          {/* Right Side - Sign Up Form */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -120,28 +112,21 @@ export const CTASection = () => {
               <CardBody className="p-8">
                 <div className="text-center mb-6">
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">Get Started Now</h3>
-                  <p className="text-gray-600">Enter your email to claim your free week</p>
+                  <p className="text-gray-600">Sign Up to claim your free week</p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <Input
-                    type="email"
-                    placeholder="Enter your email address"
-                    value={email}
-                    onValueChange={setEmail}
-                    size="lg"
-                    className="w-full"
-                    required
-                  />
+                <div className="space-y-4">
                   <Button
                     type="submit"
                     size="lg"
                     className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                     endContent={<ArrowRight className="w-5 h-5" />}
+                    as={Link}
+                    href="/sign-in"
                   >
                     Claim Your Free Week
                   </Button>
-                </form>
+                </div>
 
                 <p className="text-xs text-gray-500 text-center mt-4">
                   By signing up, you agree to our Terms of Service and Privacy Policy. No spam, unsubscribe at any time.

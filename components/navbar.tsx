@@ -9,7 +9,7 @@ import { Avatar, AvatarIcon } from "@heroui/avatar"
 import NextLink from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, X, ChevronDown, User, Settings, LogOut } from "lucide-react"
-
+import Link from "next/link"
 const navItems = [
   {
     label: "Home",
@@ -159,6 +159,8 @@ export const Navbar = () => {
               <Button
                 className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold px-6 ml-2 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                 radius="full"
+                                    as={Link}
+                    href="/sign-in"
               >
                 Get Started
               </Button>

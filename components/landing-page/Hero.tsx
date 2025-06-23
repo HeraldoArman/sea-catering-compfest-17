@@ -46,7 +46,7 @@ export const Hero = () => {
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-      {/* Animated Background Elements */}
+
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           style={{ y }}
@@ -57,7 +57,6 @@ export const Hero = () => {
           className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-emerald-400/20 to-teal-600/20 rounded-full blur-3xl"
         />
 
-        {/* Floating Geometric Shapes */}
         <motion.div
           animate={{
             rotate: 360,
@@ -91,21 +90,7 @@ export const Hero = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="space-y-10"
           >
-            {/* Badge */}
-            {/* <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
-              <Badge content="New" color="primary" variant="flat" className="mb-4">
-                <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 border border-blue-200/50">
-                  <Sparkles className="w-4 h-4 text-blue-500" />
-                  <span className="text-sm font-medium text-gray-700">AI-Powered Meal Planning</span>
-                </div>
-              </Badge>
-            </motion.div> */}
 
-            {/* Main Heading */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}

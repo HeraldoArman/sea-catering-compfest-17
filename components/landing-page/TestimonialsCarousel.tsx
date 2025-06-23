@@ -12,7 +12,7 @@ const testimonials = [
     id: 1,
     name: "Sarah Johnson",
     role: "Fitness Coach",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: "https://randomuser.me/api/portraits/women/3.jpg",
     rating: 5,
     quote:
       "SEA Catering transformed my approach to nutrition. The personalized meal plans are incredible, and I've never felt healthier. My clients love the recommendations too!",
@@ -22,7 +22,7 @@ const testimonials = [
     id: 2,
     name: "Michael Chen",
     role: "Busy Executive",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: "https://randomuser.me/api/portraits/men/94.jpg",
     rating: 5,
     quote:
       "As someone with zero time to meal prep, SEA Catering has been a game-changer. Healthy, delicious meals delivered right to my door. Worth every penny!",
@@ -32,7 +32,7 @@ const testimonials = [
     id: 3,
     name: "Emily Rodriguez",
     role: "Working Mom",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: "https://randomuser.me/api/portraits/women/87.jpg",
     rating: 5,
     quote:
       "Finally, a service that understands family nutrition! My kids actually enjoy healthy eating now, and meal planning stress is completely gone.",
