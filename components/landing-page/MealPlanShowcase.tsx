@@ -1,19 +1,21 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Card, CardBody } from "@heroui/card"
-import { Button } from "@heroui/button"
-import { Chip } from "@heroui/chip"
-import { Clock, Users, Flame, ChevronLeft, ChevronRight } from "lucide-react"
-import Image from "next/image"
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Card, CardBody } from "@heroui/card";
+import { Button } from "@heroui/button";
+import { Chip } from "@heroui/chip";
+import { Clock, Users, Flame, ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 const mealPlans = [
   {
     id: 1,
     name: "Mediterranean Delight",
-    description: "Fresh ingredients from the Mediterranean coast, rich in healthy fats and antioxidants.",
-    image: "https://thebigmansworld.com/wp-content/uploads/2024/01/mediterranean-bowl-recipe.jpg",
+    description:
+      "Fresh ingredients from the Mediterranean coast, rich in healthy fats and antioxidants.",
+    image:
+      "https://thebigmansworld.com/wp-content/uploads/2024/01/mediterranean-bowl-recipe.jpg",
     calories: 450,
     prepTime: "25 min",
     servings: 2,
@@ -24,8 +26,10 @@ const mealPlans = [
   {
     id: 2,
     name: "Protein Power Bowl",
-    description: "High-protein meal perfect for post-workout recovery and muscle building.",
-    image: "https://healthclub.methodgym.com/wp-content/uploads/2025/01/meal-prep-containers-filled-with-food-scaled.jpeg",
+    description:
+      "High-protein meal perfect for post-workout recovery and muscle building.",
+    image:
+      "https://healthclub.methodgym.com/wp-content/uploads/2025/01/meal-prep-containers-filled-with-food-scaled.jpeg",
     calories: 520,
     prepTime: "20 min",
     servings: 1,
@@ -36,8 +40,10 @@ const mealPlans = [
   {
     id: 3,
     name: "Fresh Garden Salad",
-    description: "Crisp vegetables and leafy greens with a zesty lemon vinaigrette.",
-    image: "https://www.tasteofhome.com/wp-content/uploads/2025/02/Favorite-Mediterranean-Salad_EXPS_TOHcom25_41556_MD_P2_02_05_1b.jpg",
+    description:
+      "Crisp vegetables and leafy greens with a zesty lemon vinaigrette.",
+    image:
+      "https://www.tasteofhome.com/wp-content/uploads/2025/02/Favorite-Mediterranean-Salad_EXPS_TOHcom25_41556_MD_P2_02_05_1b.jpg",
     calories: 280,
     prepTime: "15 min",
     servings: 1,
@@ -45,20 +51,20 @@ const mealPlans = [
     ingredients: ["Mixed Greens", "Cherry Tomatoes", "Carrots", "Lemon"],
     color: "from-green-400 to-emerald-500",
   },
-]
+];
 
 export const MealPlanShowcase = () => {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextMeal = () => {
-    setCurrentIndex((prev) => (prev + 1) % mealPlans.length)
-  }
+    setCurrentIndex((prev) => (prev + 1) % mealPlans.length);
+  };
 
   const prevMeal = () => {
-    setCurrentIndex((prev) => (prev - 1 + mealPlans.length) % mealPlans.length)
-  }
+    setCurrentIndex((prev) => (prev - 1 + mealPlans.length) % mealPlans.length);
+  };
 
-  const currentMeal = mealPlans[currentIndex]
+  const currentMeal = mealPlans[currentIndex];
 
   return (
     <section className="py-24 bg-white">
@@ -77,8 +83,8 @@ export const MealPlanShowcase = () => {
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Each meal is carefully crafted by our nutrition experts to provide the perfect balance of taste, health, and
-            convenience.
+            Each meal is carefully crafted by our nutrition experts to provide
+            the perfect balance of taste, health, and convenience.
           </p>
         </motion.div>
 
@@ -102,9 +108,15 @@ export const MealPlanShowcase = () => {
                         fill
                         className="object-cover"
                       />
-                      <div className={`absolute inset-0 bg-gradient-to-br ${currentMeal.color} opacity-20`} />
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-br ${currentMeal.color} opacity-20`}
+                      />
                       <div className="absolute top-6 left-6">
-                        <Chip color="primary" variant="solid" className="text-white font-semibold">
+                        <Chip
+                          color="primary"
+                          variant="solid"
+                          className="text-white font-semibold"
+                        >
                           {currentMeal.category}
                         </Chip>
                       </div>
@@ -117,36 +129,53 @@ export const MealPlanShowcase = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2, duration: 0.6 }}
                       >
-                        <h3 className="text-3xl font-bold text-gray-900 mb-4">{currentMeal.name}</h3>
-                        <p className="text-lg text-gray-600 mb-8 leading-relaxed">{currentMeal.description}</p>
+                        <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                          {currentMeal.name}
+                        </h3>
+                        <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                          {currentMeal.description}
+                        </p>
 
                         {/* Stats */}
                         <div className="flex items-center gap-6 mb-8">
                           <div className="flex items-center gap-2">
                             <Flame className="w-5 h-5 text-orange-500" />
-                            <span className="font-semibold text-gray-900">{currentMeal.calories} cal</span>
+                            <span className="font-semibold text-gray-900">
+                              {currentMeal.calories} cal
+                            </span>
                           </div>
                           <div className="flex items-center gap-2">
                             <Clock className="w-5 h-5 text-blue-500" />
-                            <span className="font-semibold text-gray-900">{currentMeal.prepTime}</span>
+                            <span className="font-semibold text-gray-900">
+                              {currentMeal.prepTime}
+                            </span>
                           </div>
                           <div className="flex items-center gap-2">
                             <Users className="w-5 h-5 text-green-500" />
                             <span className="font-semibold text-gray-900">
-                              {currentMeal.servings} serving{currentMeal.servings > 1 ? "s" : ""}
+                              {currentMeal.servings} serving
+                              {currentMeal.servings > 1 ? "s" : ""}
                             </span>
                           </div>
                         </div>
 
                         {/* Ingredients */}
                         <div className="mb-8">
-                          <h4 className="font-semibold text-gray-900 mb-3">Key Ingredients:</h4>
+                          <h4 className="font-semibold text-gray-900 mb-3">
+                            Key Ingredients:
+                          </h4>
                           <div className="flex flex-wrap gap-2">
-                            {currentMeal.ingredients.map((ingredient, index) => (
-                              <Chip key={index} variant="bordered" className="border-gray-300">
-                                {ingredient}
-                              </Chip>
-                            ))}
+                            {currentMeal.ingredients.map(
+                              (ingredient, index) => (
+                                <Chip
+                                  key={index}
+                                  variant="bordered"
+                                  className="border-gray-300"
+                                >
+                                  {ingredient}
+                                </Chip>
+                              )
+                            )}
                           </div>
                         </div>
 
@@ -192,7 +221,9 @@ export const MealPlanShowcase = () => {
                 key={index}
                 onClick={() => setCurrentIndex(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentIndex ? "bg-blue-500 scale-125" : "bg-gray-300 hover:bg-gray-400"
+                  index === currentIndex
+                    ? "bg-blue-500 scale-125"
+                    : "bg-gray-300 hover:bg-gray-400"
                 }`}
               />
             ))}
@@ -200,5 +231,5 @@ export const MealPlanShowcase = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};

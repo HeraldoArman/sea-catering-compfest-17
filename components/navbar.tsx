@@ -1,15 +1,25 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Navbar as HeroUINavbar, NavbarContent, NavbarBrand, NavbarItem } from "@heroui/navbar"
-import { Button } from "@heroui/button"
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@heroui/dropdown"
-import { Avatar, AvatarIcon } from "@heroui/avatar"
-import NextLink from "next/link"
-import { usePathname } from "next/navigation"
-import { Menu, X, ChevronDown, User, Settings, LogOut } from "lucide-react"
-import Link from "next/link"
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Navbar as HeroUINavbar,
+  NavbarContent,
+  NavbarBrand,
+  NavbarItem,
+} from "@heroui/navbar";
+import { Button } from "@heroui/button";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+} from "@heroui/dropdown";
+import { Avatar, AvatarIcon } from "@heroui/avatar";
+import NextLink from "next/link";
+import { usePathname } from "next/navigation";
+import { Menu, X, ChevronDown, User, Settings, LogOut } from "lucide-react";
+import Link from "next/link";
 const navItems = [
   {
     label: "Home",
@@ -31,25 +41,24 @@ const navItems = [
     href: "/contact",
     description: "Get in touch with our team for support or inquiries",
   },
-
-]
+];
 
 export const Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const pathname = usePathname()
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const isActive = (href: string) => {
-    if (href === "/") return pathname === "/"
-    return pathname.startsWith(href)
-  }
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  };
 
   const handleMobileMenuToggle = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen)
-  }
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false)
-  }
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <>
@@ -69,69 +78,89 @@ export const Navbar = () => {
           {/* Brand Section */}
           <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
             <NavbarBrand as="li" className="gap-3 max-w-fit">
-              <NextLink className="flex justify-start items-center gap-3 group" href="/" onClick={closeMobileMenu}>
-                <motion.div whileHover={{ scale: 1.05, rotate: 5 }} whileTap={{ scale: 0.95 }} className="relative">
+              <NextLink
+                className="flex justify-start items-center gap-3 group"
+                href="/"
+                onClick={closeMobileMenu}
+              >
+                <motion.div
+                  whileHover={{ scale: 1.05, rotate: 5 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="relative"
+                >
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300">
                     <span className="text-white font-bold text-xl">SC</span>
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-400 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-xl scale-110" />
                 </motion.div>
                 <div className="hidden sm:block">
-                  <p className="font-bold text-xl text-gray-900 transition-colors duration-300">SEA Catering</p>
-                  <p className="text-sm text-gray-600 transition-colors duration-300">Healthy Living</p>
+                  <p className="font-bold text-xl text-gray-900 transition-colors duration-300">
+                    SEA Catering
+                  </p>
+                  <p className="text-sm text-gray-600 transition-colors duration-300">
+                    Healthy Living
+                  </p>
                 </div>
               </NextLink>
             </NavbarBrand>
           </NavbarContent>
 
-            {/* Desktop Navigation */}
-            <NavbarContent className="hidden lg:flex justify-center w-full" justify="center">
-              <ul className="flex gap-2">
-                {navItems.map((item) => (
-                  <NavbarItem key={item.href}>
-                    <NextLink href={item.href} onClick={closeMobileMenu}>
-                      <motion.div
-                        whileHover={{ y: -2 }}
-                        className="relative group px-4 py-2 rounded-xl transition-all duration-300"
+          {/* Desktop Navigation */}
+          <NavbarContent
+            className="hidden lg:flex justify-center w-full"
+            justify="center"
+          >
+            <ul className="flex gap-2">
+              {navItems.map((item) => (
+                <NavbarItem key={item.href}>
+                  <NextLink href={item.href} onClick={closeMobileMenu}>
+                    <motion.div
+                      whileHover={{ y: -2 }}
+                      className="relative group px-4 py-2 rounded-xl transition-all duration-300"
+                    >
+                      <span
+                        className={`font-medium transition-colors duration-300 ${
+                          isActive(item.href)
+                            ? "text-blue-600"
+                            : "text-gray-700 hover:text-blue-600"
+                        }`}
                       >
-                        <span
-                          className={`font-medium transition-colors duration-300 ${
-                            isActive(item.href) ? "text-blue-600" : "text-gray-700 hover:text-blue-600"
-                          }`}
-                        >
-                          {item.label}
-                        </span>
+                        {item.label}
+                      </span>
 
-                        {/* Active indicator */}
-                        {isActive(item.href) && (
-                          <motion.div
-                            layoutId="activeTab"
-                            className="absolute inset-0 rounded-xl bg-blue-50 border border-blue-200"
-                            style={{ zIndex: -1 }}
-                          />
-                        )}
-
-                        {/* Hover effect */}
-                        <div
-                          className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gray-50"
+                      {/* Active indicator */}
+                      {isActive(item.href) && (
+                        <motion.div
+                          layoutId="activeTab"
+                          className="absolute inset-0 rounded-xl bg-blue-50 border border-blue-200"
                           style={{ zIndex: -1 }}
                         />
-                      </motion.div>
-                    </NextLink>
-                  </NavbarItem>
-                ))}
-              </ul>
-            </NavbarContent>
+                      )}
 
+                      {/* Hover effect */}
+                      <div
+                        className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gray-50"
+                        style={{ zIndex: -1 }}
+                      />
+                    </motion.div>
+                  </NextLink>
+                </NavbarItem>
+              ))}
+            </ul>
+          </NavbarContent>
 
           {/* Right Section */}
-          <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
+          <NavbarContent
+            className="hidden sm:flex basis-1/5 sm:basis-full"
+            justify="end"
+          >
             <div className="flex items-center gap-2">
               {/* User Menu */}
               <Dropdown placement="bottom-end">
                 <DropdownTrigger>
                   <Button variant="light" className="p-0 min-w-0 h-auto">
                     <div className="flex items-center gap-2">
+                      <p className="text-sm text-gray-700 font-medium px-1">user</p>
                       <Avatar
                         size="sm"
                         className="border-2 border-gray-200"
@@ -143,13 +172,23 @@ export const Navbar = () => {
                   </Button>
                 </DropdownTrigger>
                 <DropdownMenu aria-label="User menu">
-                  <DropdownItem key="profile" startContent={<User className="w-4 h-4" />}>
+                  <DropdownItem
+                    key="profile"
+                    startContent={<User className="w-4 h-4" />}
+                  >
                     Profile
                   </DropdownItem>
-                  <DropdownItem key="settings" startContent={<Settings className="w-4 h-4" />}>
+                  <DropdownItem
+                    key="settings"
+                    startContent={<Settings className="w-4 h-4" />}
+                  >
                     Settings
                   </DropdownItem>
-                  <DropdownItem key="logout" color="danger" startContent={<LogOut className="w-4 h-4" />}>
+                  <DropdownItem
+                    key="logout"
+                    color="danger"
+                    startContent={<LogOut className="w-4 h-4" />}
+                  >
                     Log Out
                   </DropdownItem>
                 </DropdownMenu>
@@ -159,8 +198,8 @@ export const Navbar = () => {
               <Button
                 className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold px-6 ml-2 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                 radius="full"
-                                    as={Link}
-                    href="/sign-in"
+                as={Link}
+                href="/sign-in"
               >
                 Get Started
               </Button>
@@ -170,15 +209,21 @@ export const Navbar = () => {
           {/* Mobile Menu Toggle */}
           <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
             <div className="flex items-center gap-2">
-
               <Button
                 isIconOnly
                 variant="light"
                 className="text-gray-600 hover:text-blue-600 transition-colors duration-300"
                 onPress={handleMobileMenuToggle}
               >
-                <motion.div animate={{ rotate: isMobileMenuOpen ? 180 : 0 }} transition={{ duration: 0.3 }}>
-                  {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                <motion.div
+                  animate={{ rotate: isMobileMenuOpen ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {isMobileMenuOpen ? (
+                    <X className="w-6 h-6" />
+                  ) : (
+                    <Menu className="w-6 h-6" />
+                  )}
                 </motion.div>
               </Button>
             </div>
@@ -246,7 +291,9 @@ export const Navbar = () => {
                         }`}
                       >
                         <div className="font-medium">{item.label}</div>
-                        <div className="text-sm text-gray-500 mt-1">{item.description}</div>
+                        <div className="text-sm text-gray-500 mt-1">
+                          {item.description}
+                        </div>
                       </NextLink>
                     </motion.div>
                   ))}
@@ -267,5 +314,5 @@ export const Navbar = () => {
         )}
       </AnimatePresence>
     </>
-  )
-}
+  );
+};

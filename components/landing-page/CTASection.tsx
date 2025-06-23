@@ -1,17 +1,16 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { motion } from "framer-motion"
-import { Button } from "@heroui/button"
-import { Card, CardBody } from "@heroui/card"
-import Link from "next/link"
-import { ArrowRight, Sparkles, Gift, Clock } from "lucide-react"
-import { useState } from "react"
+import { motion } from "framer-motion";
+import { Button } from "@heroui/button";
+import { Card, CardBody } from "@heroui/card";
+import Link from "next/link";
+import { ArrowRight, Sparkles, Gift, Clock } from "lucide-react";
+import { useState } from "react";
 
 export const CTASection = () => {
-  const [email, setEmail] = useState("")
-
+  const [email, setEmail] = useState("");
 
   return (
     <section className="py-24 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 relative overflow-hidden">
@@ -22,8 +21,16 @@ export const CTASection = () => {
             scale: [1, 1.2, 1],
           }}
           transition={{
-            rotate: { duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" },
-            scale: { duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
+            rotate: {
+              duration: 20,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "linear",
+            },
+            scale: {
+              duration: 8,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            },
           }}
           className="absolute -top-40 -right-40 w-80 h-80 bg-white/10 rounded-full blur-3xl"
         />
@@ -33,8 +40,16 @@ export const CTASection = () => {
             scale: [1.2, 1, 1.2],
           }}
           transition={{
-            rotate: { duration: 25, repeat: Number.POSITIVE_INFINITY, ease: "linear" },
-            scale: { duration: 6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
+            rotate: {
+              duration: 25,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "linear",
+            },
+            scale: {
+              duration: 6,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            },
           }}
           className="absolute -bottom-40 -left-40 w-96 h-96 bg-white/10 rounded-full blur-3xl"
         />
@@ -50,17 +65,21 @@ export const CTASection = () => {
         >
           <div className="flex items-center justify-center gap-2 mb-6">
             <Sparkles className="w-8 h-8 text-yellow-300" />
-            <span className="text-yellow-300 font-semibold text-lg">Limited Time Offer</span>
+            <span className="text-yellow-300 font-semibold text-lg">
+              Limited Time Offer
+            </span>
             <Sparkles className="w-8 h-8 text-yellow-300" />
           </div>
           <h2 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
             Start Your Health Journey
             <br />
-            <span className="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">Today</span>
+            <span className="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
+              Today
+            </span>
           </h2>
           <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-            Join thousands of satisfied customers and transform your relationship with food. Get your first week
-            absolutely free!
+            Join thousands of satisfied customers and transform your
+            relationship with food. Get your first week absolutely free!
           </p>
         </motion.div>
 
@@ -78,7 +97,9 @@ export const CTASection = () => {
                 <Gift className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white">First Week Free</h3>
+                <h3 className="text-xl font-bold text-white">
+                  First Week Free
+                </h3>
                 <p className="text-blue-100">No commitment, cancel anytime</p>
               </div>
             </div>
@@ -88,7 +109,9 @@ export const CTASection = () => {
               </div>
               <div>
                 <h3 className="text-xl font-bold text-white">Instant Access</h3>
-                <p className="text-blue-100">Start planning meals immediately</p>
+                <p className="text-blue-100">
+                  Start planning meals immediately
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -96,8 +119,12 @@ export const CTASection = () => {
                 <Sparkles className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white">Premium Features</h3>
-                <p className="text-blue-100">AI meal planning, nutrition tracking & more</p>
+                <h3 className="text-xl font-bold text-white">
+                  Premium Features
+                </h3>
+                <p className="text-blue-100">
+                  AI meal planning, nutrition tracking & more
+                </p>
               </div>
             </div>
           </motion.div>
@@ -111,8 +138,12 @@ export const CTASection = () => {
             <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-0">
               <CardBody className="p-8">
                 <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Get Started Now</h3>
-                  <p className="text-gray-600">Sign Up to claim your free week</p>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                    Get Started Now
+                  </h3>
+                  <p className="text-gray-600">
+                    Sign Up to claim your free week
+                  </p>
                 </div>
 
                 <div className="space-y-4">
@@ -129,7 +160,8 @@ export const CTASection = () => {
                 </div>
 
                 <p className="text-xs text-gray-500 text-center mt-4">
-                  By signing up, you agree to our Terms of Service and Privacy Policy. No spam, unsubscribe at any time.
+                  By signing up, you agree to our Terms of Service and Privacy
+                  Policy. No spam, unsubscribe at any time.
                 </p>
               </CardBody>
             </Card>
@@ -137,5 +169,5 @@ export const CTASection = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};

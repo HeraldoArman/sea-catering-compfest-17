@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Card, CardBody } from "@heroui/card"
-import { Avatar } from "@heroui/avatar"
-import { Button } from "@heroui/button"
-import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react"
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Card, CardBody } from "@heroui/card";
+import { Avatar } from "@heroui/avatar";
+import { Button } from "@heroui/button";
+import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 
 const testimonials = [
   {
@@ -38,24 +38,29 @@ const testimonials = [
       "Finally, a service that understands family nutrition! My kids actually enjoy healthy eating now, and meal planning stress is completely gone.",
     color: "from-emerald-400 to-teal-500",
   },
-]
+];
 
 export const TestimonialsCarousel = () => {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextTestimonial = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length)
-  }
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
 
   const prevTestimonial = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
-  }
+    setCurrentIndex(
+      (prev) => (prev - 1 + testimonials.length) % testimonials.length
+    );
+  };
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
-      <Star key={i} className={`w-5 h-5 ${i < rating ? "text-yellow-400 fill-current" : "text-gray-300"}`} />
-    ))
-  }
+      <Star
+        key={i}
+        className={`w-5 h-5 ${i < rating ? "text-yellow-400 fill-current" : "text-gray-300"}`}
+      />
+    ));
+  };
 
   return (
     <section className="py-24 bg-gradient-to-br from-purple-50 to-pink-50">
@@ -74,7 +79,8 @@ export const TestimonialsCarousel = () => {
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Real stories from real people who have transformed their health journey with SEA Catering.
+            Real stories from real people who have transformed their health
+            journey with SEA Catering.
           </p>
         </motion.div>
 
@@ -99,7 +105,9 @@ export const TestimonialsCarousel = () => {
                     "{testimonials[currentIndex].quote}"
                   </blockquote>
 
-                  <div className="flex justify-center mb-6">{renderStars(testimonials[currentIndex].rating)}</div>
+                  <div className="flex justify-center mb-6">
+                    {renderStars(testimonials[currentIndex].rating)}
+                  </div>
 
                   <div className="flex items-center justify-center gap-4">
                     <Avatar
@@ -109,8 +117,12 @@ export const TestimonialsCarousel = () => {
                       className="border-4 border-white shadow-lg"
                     />
                     <div className="text-left">
-                      <h4 className="font-bold text-gray-900 text-lg">{testimonials[currentIndex].name}</h4>
-                      <p className="text-gray-600">{testimonials[currentIndex].role}</p>
+                      <h4 className="font-bold text-gray-900 text-lg">
+                        {testimonials[currentIndex].name}
+                      </h4>
+                      <p className="text-gray-600">
+                        {testimonials[currentIndex].role}
+                      </p>
                     </div>
                   </div>
                 </CardBody>
@@ -146,7 +158,9 @@ export const TestimonialsCarousel = () => {
                 key={index}
                 onClick={() => setCurrentIndex(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentIndex ? "bg-purple-500 scale-125" : "bg-purple-200 hover:bg-purple-300"
+                  index === currentIndex
+                    ? "bg-purple-500 scale-125"
+                    : "bg-purple-200 hover:bg-purple-300"
                 }`}
               />
             ))}
@@ -154,5 +168,5 @@ export const TestimonialsCarousel = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
