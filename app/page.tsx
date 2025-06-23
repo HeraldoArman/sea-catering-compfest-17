@@ -1,9 +1,9 @@
-import { Hero } from "@/components/Hero";
-import { FeaturesSection } from "@/components/FeaturesSection";
-import { StatsSection } from "@/components/StatsSection";
-import { MealPlanShowcase } from "@/components/MealPlanShowcase";
-import { CTASection } from "@/components/CTASection";
-import { TestimonialsCarousel } from "@/components/TestimonialsCarousel";
+import { Hero } from "@/components/landing-page/Hero";
+import { FeaturesSection } from "@/components/landing-page/FeaturesSection";
+import { StatsSection } from "@/components/landing-page/StatsSection";
+import { MealPlanShowcase } from "@/components/landing-page/MealPlanShowcase";
+import { CTASection } from "@/components/landing-page/CTASection";
+import { TestimonialsCarousel } from "@/components/landing-page/TestimonialsCarousel";
 export default function Home() {
   return (
     <div className="min-h-screen">
