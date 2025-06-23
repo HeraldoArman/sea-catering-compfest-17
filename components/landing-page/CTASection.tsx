@@ -84,7 +84,7 @@ export const CTASection = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Side - Benefits */}
+
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -153,7 +153,7 @@ export const CTASection = () => {
                     className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                     endContent={<ArrowRight className="w-5 h-5" />}
                     as={Link}
-                    href="/sign-in"
+                    href="/sign-up"
                   >
                     Claim Your Free Week
                   </Button>
