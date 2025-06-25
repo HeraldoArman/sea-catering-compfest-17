@@ -1,45 +1,45 @@
-# SEA Catering - Aplikasi Pemesanan Katering Sehat
+# SEA Catering - Healthy Meals, Anytime, Anywhere
 
-SEA Catering adalah aplikasi web modern yang dibangun dengan Next.js 15, dirancang untuk menyediakan solusi pemesanan katering makanan sehat yang mudah dan menyenangkan. Aplikasi ini menawarkan rekomendasi menu yang dipersonalisasi, rencana makan, dan berbagai fitur lainnya untuk mendukung gaya hidup sehat Anda.
+SEA Catering adalah web app yang dibuat dengan Next.js 15, dirancang untuk menyelesaikan tugas seleksi Compfest Software Engineering Academy
 
 ## Teknologi yang Digunakan
 
 Proyek ini dibangun menggunakan tumpukan teknologi modern yang berfokus pada kinerja dan pengalaman pengembang:
 
   * **Framework**: [Next.js 15](https://nextjs.org/docs/getting-started) (dengan App Router & Turbopack)
-  * **UI Komponen**: [HeroUI v2](https://heroui.com/) - Koleksi komponen antarmuka pengguna yang indah dan dapat disesuaikan.
-  * **Styling**: [Tailwind CSS](https://tailwindcss.com/) dengan [Tailwind Variants](https://tailwind-variants.org) untuk styling yang sangat dapat disesuaikan dan efisien.
-  * **ORM**: [Drizzle ORM](https://orm.drizzle.team/) - ORM TypeScript-first yang ringan dan cepat untuk berinteraksi dengan basis data.
-  * **Autentikasi**: [Better Auth](https://www.google.com/search?q=https://better-auth.dev/) - Solusi autentikasi lengkap dan mudah digunakan yang terintegrasi dengan Drizzle.
-  * **Bahasa**: [TypeScript](https://www.typescriptlang.org/)
-  * **Animasi**: [Framer Motion](https://www.framer.com/motion/) untuk animasi antarmuka pengguna yang kaya dan lancar.
-  * **Basis Data**: PostgreSQL
-  * **Validasi**: [Zod](https://zod.dev/) untuk validasi skema dan tipe data.
+  * **UI Komponen**: [HeroUI](https://heroui.com/)
+  * **Styling**: [Tailwind CSS](https://tailwindcss.com/) 
+  * **ORM**: [Drizzle ORM](https://orm.drizzle.team/) 
+  * **Autentikasi**: [Better Auth](https://www.google.com/search?q=https://better-auth.dev/)
+  * **Bahasa Pemrograman**: [TypeScript](https://www.typescriptlang.org/)
+  * **Animasi**: [Framer Motion](https://www.framer.com/motion/) 
+  * **Database**: PostgreSQL dengan [Neon](https://neon.com/)
+  * **Validation Form**: [Zod](https://zod.dev/)
 
 ## Fitur Utama
-
-  * **Autentikasi Pengguna**: Sistem masuk dan pendaftaran yang aman menggunakan email/kata sandi dan penyedia OAuth (Google).
-  * **Beranda Dinamis**: Halaman utama yang menarik dengan beberapa bagian termasuk Hero, Fitur, Statistik, Pameran Paket Makanan, Testimonial, dan Ajakan Bertindak (CTA).
-  * **Personalisasi Menu**: Rekomendasi menu yang disesuaikan dengan preferensi pengguna.
-  * **Paket Langganan**: Berbagai pilihan paket makanan untuk memenuhi berbagai kebutuhan diet.
+  * **Autentikasi Pengguna**: Sistem masuk dan pendaftaran yang aman menggunakan email/kata sandi dan OAuth Google
+  * **Landing Page**: Halaman utama yang menarik dengan beberapa bagian termasuk Hero, Testimoni, dan Call to Action (CTA).
   * **Desain Responsif**: Antarmuka yang sepenuhnya responsif yang berfungsi dengan baik di perangkat desktop dan seluler.
+  * **Subscription System**: Sistem subscription yang terdiri dari Diet Plan – Rp30.000,00 per meal, Protein Plan – Rp40.000,00 per meal, Royal Plan – Rp60.000,00 per meal.
+  * **Dashboard Admin dan User**: Dashboard untuk mengeloloa subscription, pengeluaran, dan pendapatan
 
-## Memulai
+
+## Menjalankan Project
 
 Untuk menjalankan proyek ini secara lokal, ikuti langkah-langkah di bawah ini.
 
 ### Prasyarat
 
-Pastikan Anda memiliki Node.js (versi 18.18.0 atau lebih baru direkomendasikan) dan manajer paket (npm, yarn, pnpm, atau bun) terpasang di sistem Anda.
+Pastikan Anda memiliki Node.js (versi 18.18.0 atau lebih baru direkomendasikan) dan package manager npm
 
-### 1\. Kloning Repositori
+### 1\. Clone Repository
 
 ```bash
 git clone https://github.com/heraldoarman/sea-catering.git
 cd sea-catering
 ```
 
-### 2\. Instal Dependensi
+### 2\. Install Dependency
 
 Proyek ini menggunakan banyak paket yang memerlukan flag `--legacy-peer-deps` saat instalasi dengan `npm` karena beberapa konflik ketergantungan antar-paket.
 
@@ -49,38 +49,45 @@ npm install --legacy-peer-deps
 
 ### 3\. Pengaturan Variabel Lingkungan
 
-Buat file `.env` di direktori root proyek Anda dan tambahkan variabel lingkungan berikut. Ganti nilai kosong dengan kredensial Anda.
+Buat file `.env` di direktori root proyek Anda dan tambahkan variabel lingkungan berikut.
 
 ```env
-# Rahasia untuk menandatangani token sesi Better Auth
-BETTER_AUTH_SECRET="your_strong_secret_here"
+BETTER_AUTH_SECRET=""
+BETTER_AUTH_URL=""
 
-# URL lengkap aplikasi Anda (untuk callback OAuth dan lainnya)
-BETTER_AUTH_URL="http://localhost:3000"
+DATABASE_URL=""
 
-# URL koneksi ke basis data PostgreSQL Anda
-DATABASE_URL="postgresql://user:password@host:port/database"
+GOOGLE_CLIENT_ID=""
+GOOGLE_CLIENT_SECRET=""
 ```
 
-**Catatan Keamanan**: JANGAN pernah membagikan file `.env` Anda atau mengekspos rahasia Anda di repositori publik. File `.gitignore` sudah dikonfigurasi untuk mengabaikan file ini.
+### 4\. Migrasi Database
 
-### 4\. Migrasi Basis Data
-
-Setelah Anda mengatur `DATABASE_URL`, jalankan perintah berikut untuk mendorong skema basis data Anda ke penyedia basis data Anda.
+Setelah Anda mengatur `DATABASE_URL` dengan yang anda miliki, jalankan perintah berikut untuk push skema database Anda ke penyedia database Anda.
 
 ```bash
 npx drizzle-kit push
 ```
 
-### 5\. Menjalankan Server Pengembangan
+### 5\. Menjalankan Program
 
-Sekarang Anda dapat memulai server pengembangan, yang didukung oleh Turbopack untuk kecepatan maksimal.
+Sekarang Anda dapat memulai dev server
 
 ```bash
 npm run dev
 ```
 
-Buka [http://localhost:3000](https://www.google.com/search?q=http://localhost:3000) di peramban Anda untuk melihat aplikasi berjalan.
+atau, jika ingin mem-build terlebih dahulu dapat dengan
+
+```bash
+npm run build
+```
+Lalu,
+```bash
+npm run start
+```
+
+Buka [http://localhost:3000](http://localhost:3000) di browser untuk membuka proyek
 
 ## Struktur Proyek
 
@@ -126,3 +133,8 @@ Berdasarkan `README.md` awal, berikut adalah beberapa tugas yang masih perlu dis
   * [ ] benerin hero, masih belom bisa mencet beberapa tombol
   * [ ] Perbaiki tata letak bagian atas dari komponen Hero.
   * [ ] Ganti logo placeholder dengan logo SEA Catering yang sebenarnya.
+
+
+## Future Improvements
+
+- belum ada
