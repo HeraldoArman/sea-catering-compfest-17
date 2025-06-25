@@ -6,6 +6,7 @@ import { ArrowRight, Play, Star, Award, Sparkles } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { floatingCards } from "../meal";
+import Link from "next/link";
 
 
 export const Hero = () => {
@@ -138,7 +139,8 @@ export const Hero = () => {
                 size="lg"
                 className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold px-8 py-6 text-lg rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                 endContent={<ArrowRight className="w-5 h-5" />}
-                href="/subscriptions"
+                                    as={Link}
+                    href="/subscription"
               >
                 Start Your Journey
               </Button>
