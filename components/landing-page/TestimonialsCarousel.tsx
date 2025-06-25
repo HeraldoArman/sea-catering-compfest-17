@@ -151,7 +151,7 @@ export const TestimonialsCarousel = () => {
             <ChevronRight className="w-5 h-5" />
           </Button>
 
-          {/* Dots Indicator */}
+
           <div className="flex justify-center mt-8 gap-2">
             {testimonials.map((_, index) => (
               <button

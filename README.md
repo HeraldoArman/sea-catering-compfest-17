@@ -123,6 +123,6 @@ Berikut adalah gambaran umum tentang struktur direktori proyek:
 
 Berdasarkan `README.md` awal, berikut adalah beberapa tugas yang masih perlu diselesaikan:
 
-  * [ ] Perbaiki fungsionalitas pencarian di bilah navigasi.
+  * [ ] benerin hero, masih belom bisa mencet beberapa tombol
   * [ ] Perbaiki tata letak bagian atas dari komponen Hero.
   * [ ] Ganti logo placeholder dengan logo SEA Catering yang sebenarnya.

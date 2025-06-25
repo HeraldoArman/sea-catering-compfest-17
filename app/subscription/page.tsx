@@ -1,9 +1,5 @@
-import { title } from "@/components/";
+import { SubscriptionForm } from "@/components/subcription/SubscriptionForm"
 
-export default function DocsPage() {
-  return (
-    <div>
-      <h1 className={title()}>Docs</h1>
-    </div>
-  );
+export default function SubscriptionPage() {
+  return <SubscriptionForm />
 }

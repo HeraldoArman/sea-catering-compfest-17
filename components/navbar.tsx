@@ -1,16 +1,26 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Navbar as HeroUINavbar, NavbarContent, NavbarBrand } from "@heroui/navbar"
-import { Button } from "@heroui/button"
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@heroui/dropdown"
-import { Avatar, AvatarIcon } from "@heroui/avatar"
-import NextLink from "next/link"
-import { usePathname } from "next/navigation"
-import { Menu, X, ChevronDown, User, LogOut } from "lucide-react"
-import Link from "next/link"
-import { authClient } from "@/utils/auth-client"
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Navbar as HeroUINavbar,
+  NavbarContent,
+  NavbarBrand,
+} from "@heroui/navbar";
+import { Button } from "@heroui/button";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+} from "@heroui/dropdown";
+import { Avatar, AvatarIcon } from "@heroui/avatar";
+import NextLink from "next/link";
+import { usePathname } from "next/navigation";
+import { Menu, X, ChevronDown, LogOut, LayoutDashboard } from "lucide-react";
+import Link from "next/link";
+import { authClient } from "@/utils/auth-client";
+import { useRouter } from "next/navigation";
 
 const navItems = [
   {
@@ -33,52 +43,52 @@ const navItems = [
     href: "/contact",
     description: "Get in touch with our team for support or inquiries",
   },
-]
+];
 
 export const Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
-  const pathname = usePathname()
-  const { data, isPending } = authClient.useSession()
-
-
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const { data, isPending } = authClient.useSession();
+  const router = useRouter();
+  
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden"
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset"
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = "unset"
-    }
-  }, [isMobileMenuOpen])
+      document.body.style.overflow = "unset";
+    };
+  }, [isMobileMenuOpen]);
 
   const onLogout = () => {
-    authClient.signOut()
-    closeMobileMenu()
-  }
+    authClient.signOut();
+    router.push("/sign-in");
+    closeMobileMenu();
+  };
 
   const isActive = (href: string) => {
-    if (href === "/") return pathname === "/"
-    return pathname.startsWith(href)
-  }
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  };
 
   const handleMobileMenuToggle = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen)
-  }
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false)
-  }
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <>
@@ -92,9 +102,9 @@ export const Navbar = () => {
             : "bg-white/95 backdrop-blur-xl border-b border-gray-200/50 shadow-lg"
         }`}
         style={{
-          zIndex: 9999, 
+          zIndex: 9999,
           position: "fixed",
-          isolation: "isolate", 
+          isolation: "isolate",
         }}
       >
         <HeroUINavbar
@@ -114,9 +124,15 @@ export const Navbar = () => {
                 href="/"
                 onClick={closeMobileMenu}
               >
-                <motion.div whileHover={{ scale: 1.05, rotate: 5 }} whileTap={{ scale: 0.95 }} className="relative">
+                <motion.div
+                  whileHover={{ scale: 1.05, rotate: 5 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="relative"
+                >
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300">
-                    <span className="text-white font-bold text-lg sm:text-xl">SC</span>
+                    <span className="text-white font-bold text-lg sm:text-xl">
+                      SC
+                    </span>
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-400 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-xl scale-110" />
                 </motion.div>
@@ -124,14 +140,19 @@ export const Navbar = () => {
                   <p className="font-bold text-lg sm:text-xl text-gray-900 transition-colors duration-300">
                     SEA Catering
                   </p>
-                  <p className="text-xs sm:text-sm text-gray-600 transition-colors duration-300">Healthy Living</p>
+                  <p className="text-xs sm:text-sm text-gray-600 transition-colors duration-300">
+                    Healthy Living
+                  </p>
                 </div>
               </NextLink>
             </NavbarBrand>
           </NavbarContent>
 
           {/* Desktop Navigation - Center with flex-1 */}
-          <NavbarContent className="hidden md:flex flex-1 justify-center" justify="center">
+          <NavbarContent
+            className="hidden md:flex flex-1 justify-center"
+            justify="center"
+          >
             <div className="flex gap-1 xl:gap-2" style={{ zIndex: 10 }}>
               {navItems.map((item) => (
                 <div key={item.href} className="relative">
@@ -142,7 +163,9 @@ export const Navbar = () => {
                     >
                       <span
                         className={`font-medium transition-colors duration-300 text-sm xl:text-base whitespace-nowrap ${
-                          isActive(item.href) ? "text-blue-600" : "text-gray-700 hover:text-blue-600"
+                          isActive(item.href)
+                            ? "text-blue-600"
+                            : "text-gray-700 hover:text-blue-600"
                         }`}
                       >
                         {item.label}
@@ -167,19 +190,43 @@ export const Navbar = () => {
             </div>
           </NavbarContent>
 
-          <NavbarContent className="hidden sm:flex basis-auto sm:basis-1/4" justify="end" style={{ zIndex: 10 }}>
+          <NavbarContent
+            className="hidden sm:flex basis-auto sm:basis-1/4"
+            justify="end"
+            style={{ zIndex: 10 }}
+          >
             {!!data?.user ? (
               <Dropdown placement="bottom-end">
                 <DropdownTrigger>
-                  <Button variant="light" className="p-0 min-w-0 h-auto relative z-10">
+                  <Button
+                    variant="light"
+                    className="p-0 min-w-0 h-auto relative z-10"
+                  >
                     <div className="flex items-center gap-2">
-                      <p className="text-sm text-gray-700 font-medium px-1 hidden md:block">{data?.user.name}</p>
-                      <Avatar size="sm" className="border-2 border-gray-200" icon={<AvatarIcon />} />
+                      <p className="text-sm text-gray-700 font-medium px-1 hidden md:block">
+                        {data?.user.name}
+                      </p>
+                      <Avatar
+                        size="sm"
+                        className="border-2 border-gray-200"
+                        icon={<AvatarIcon />}
+                      />
                       <ChevronDown className="w-4 h-4 text-gray-600 transition-colors duration-300" />
                     </div>
                   </Button>
                 </DropdownTrigger>
-                <DropdownMenu aria-label="User menu" className="relative" style={{ zIndex: 10000 }}>
+                <DropdownMenu
+                  aria-label="User menu"
+                  className="relative"
+                  style={{ zIndex: 10000 }}
+                >
+                  <DropdownItem
+                    key="dashboard"
+                    startContent={<LayoutDashboard className="w-4 h-4" />}
+                  >
+                    Dashboard
+                  </DropdownItem>
+
                   <DropdownItem
                     key="logout"
                     color="danger"
@@ -213,8 +260,15 @@ export const Navbar = () => {
                 onPress={handleMobileMenuToggle}
                 style={{ zIndex: 10 }}
               >
-                <motion.div animate={{ rotate: isMobileMenuOpen ? 180 : 0 }} transition={{ duration: 0.3 }}>
-                  {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                <motion.div
+                  animate={{ rotate: isMobileMenuOpen ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {isMobileMenuOpen ? (
+                    <X className="w-6 h-6" />
+                  ) : (
+                    <Menu className="w-6 h-6" />
+                  )}
                 </motion.div>
               </Button>
             </div>
@@ -266,7 +320,12 @@ export const Navbar = () => {
                       <p className="text-sm text-gray-600">Healthy Living</p>
                     </div>
                   </div>
-                  <Button isIconOnly variant="light" onPress={closeMobileMenu} className="relative z-10">
+                  <Button
+                    isIconOnly
+                    variant="light"
+                    onPress={closeMobileMenu}
+                    className="relative z-10"
+                  >
                     <X className="w-6 h-6" />
                   </Button>
                 </div>
@@ -290,7 +349,9 @@ export const Navbar = () => {
                         }`}
                       >
                         <div className="font-medium">{item.label}</div>
-                        <div className="text-sm text-gray-500 mt-1">{item.description}</div>
+                        <div className="text-sm text-gray-500 mt-1">
+                          {item.description}
+                        </div>
                       </NextLink>
                     </motion.div>
                   ))}
@@ -306,16 +367,32 @@ export const Navbar = () => {
                   >
                     {/* User Info Card */}
                     <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl">
-                      <Avatar size="md" className="border-2 border-gray-200" icon={<AvatarIcon />} />
+                      <Avatar
+                        size="md"
+                        className="border-2 border-gray-200"
+                        icon={<AvatarIcon />}
+                      />
                       <div className="flex-1 min-w-0">
-                        <p className="font-semibold text-gray-900 truncate">{data?.user.name}</p>
-                        <p className="text-sm text-gray-600 truncate">{data?.user.email}</p>
+                        <p className="font-semibold text-gray-900 truncate">
+                          {data?.user.name}
+                        </p>
+                        <p className="text-sm text-gray-600 truncate">
+                          {data?.user.email}
+                        </p>
                       </div>
                     </div>
 
-
                     <div className="space-y-2">
-
+                      <Button
+                        variant="light"
+                        className="w-full justify-start"
+                        startContent={<LayoutDashboard className="w-4 h-4" />}
+                        size="lg"
+                      >
+                        dashboard
+                      </Button>
+                    </div>
+                    <div className="space-y-2">
                       <Button
                         variant="light"
                         color="danger"
@@ -347,8 +424,7 @@ export const Navbar = () => {
         )}
       </AnimatePresence>
 
-
       <div className="h-16 sm:h-20" />
     </>
-  )
-}
+  );
+};

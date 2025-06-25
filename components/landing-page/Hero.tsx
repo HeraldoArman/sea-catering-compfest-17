@@ -1,51 +1,17 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@heroui/button";
 import { Card, CardBody } from "@heroui/card";
-import { Badge } from "@heroui/badge";
 import { ArrowRight, Play, Star, Award, Sparkles } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
+import { floatingCards } from "../meal";
+
 
 export const Hero = () => {
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 150]);
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
-  const floatingCards = [
-    {
-      id: 1,
-      title: "Mediterranean Bowl",
-      price: "Rp259.000",
-      rating: 4.9,
-      image:
-        "https://thebigmansworld.com/wp-content/uploads/2024/01/mediterranean-bowl-recipe.jpg",
-      color: "from-emerald-400 to-teal-500",
-      delay: 0,
-    },
-    {
-      id: 2,
-      title: "Protein Power Pack",
-      price: "Rp229.000",
-      rating: 4.8,
-      image:
-        "https://healthclub.methodgym.com/wp-content/uploads/2025/01/meal-prep-containers-filled-with-food-scaled.jpeg",
-      color: "from-purple-400 to-pink-500",
-      delay: 0.2,
-    },
-    {
-      id: 3,
-      title: "Fresh Garden Salad",
-      price: "Rp209.000",
-      rating: 4.7,
-      image:
-        "https://www.tasteofhome.com/wp-content/uploads/2025/02/Favorite-Mediterranean-Salad_EXPS_TOHcom25_41556_MD_P2_02_05_1b.jpg",
-      color: "from-orange-400 to-red-500",
-      delay: 0.4,
-    },
-  ];
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
@@ -167,6 +133,7 @@ export const Hero = () => {
                 size="lg"
                 className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold px-8 py-6 text-lg rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                 endContent={<ArrowRight className="w-5 h-5" />}
+                
               >
                 Start Your Journey
               </Button>
