@@ -1,10 +1,10 @@
-import { type NextRequest, NextResponse } from "next/server"
+import { type NextRequest, NextResponse } from "next/server";
 
-const protectedRoutes = ["/subscription", "/dashboard"]
+const protectedRoutes = ["/subscription", "/dashboard"];
 
 export async function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl
-  
+  const { pathname } = request.nextUrl;
+
   console.log("Cookies on request:", request.cookies.getAll());
 
   if (
@@ -13,41 +13,42 @@ export async function middleware(request: NextRequest) {
     pathname.includes(".") ||
     pathname.startsWith("/favicon")
   ) {
-    return NextResponse.next()
+    return NextResponse.next();
   }
 
-  const isProtectedRoute = protectedRoutes.some((route) => pathname.startsWith(route))
+  const isProtectedRoute = protectedRoutes.some((route) =>
+    pathname.startsWith(route)
+  );
 
   if (!isProtectedRoute) {
-    return NextResponse.next()
+    return NextResponse.next();
   }
 
   try {
-
-    const sessionToken = request.cookies.get("better-auth.session_token")?.value
+    const sessionToken =
+      request.cookies.get("__Secure-better-auth.session_token")?.value ||
+      request.cookies.get("better-auth.session_token")?.value;
 
     if (!sessionToken) {
-
-      const signUpUrl = new URL("/sign-up", request.url)
-      console.log("Redirecting to sign-up page due to missing session token")
-      return NextResponse.redirect(signUpUrl)
+      const signUpUrl = new URL("/sign-up", request.url);
+      console.log("Redirecting to sign-up page due to missing session token");
+      return NextResponse.redirect(signUpUrl);
     }
-    console.log("Session token found, proceeding with request")
-    console.log("Session Token:", sessionToken)
-    return NextResponse.next()
+    console.log("Session token found, proceeding with request");
+    console.log("Session Token:", sessionToken);
+    return NextResponse.next();
   } catch (error) {
-    console.error("Middleware auth error:", error)
+    console.error("Middleware auth error:", error);
 
-    const signUpUrl = new URL("/sign-up", request.url)
+    const signUpUrl = new URL("/sign-up", request.url);
 
+    const response = NextResponse.redirect(signUpUrl);
 
-    const response = NextResponse.redirect(signUpUrl)
-    
-    response.cookies.delete("better-auth.session_token")
-    return response
+    response.cookies.delete("better-auth.session_token");
+    return response;
   }
 }
 
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
-}
+};
