@@ -62,7 +62,7 @@ Buat file `.env` di direktori root proyek Anda dan tambahkan variabel lingkungan
 
 ```env
 NEXT_PUBLIC_APP_URL="http://localhost:3000"
-BETTER_AUTH_SECRET="BIVEyOl9mkX9QHFbsIC2NKDEHJHPKLZw"
+BETTER_AUTH_SECRET="KVeBXKkEVDBCgGlmi2RoLW7Urkb5Z8odS96rhaHlafpOPhVqYstroMsoRkDDxJFDruWgFugytfEmuOWQlvvhX11yQMZXceqflvrm"
 BETTER_AUTH_URL="http://localhost:3000"
 
 DATABASE_URL="postgresql://sea-catering_owner:npg_alqg4RmkZOT0@ep-snowy-queen-a1wiatd8-pooler.ap-southeast-1.aws.neon.tech/sea-catering?sslmode=require"
