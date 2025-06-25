@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
-import { db } from "@/index"; // adjust import to your drizzle db instance
+import { db } from "@/index";
 import { user, subscription } from "@/db/schema";
+import { eq } from "drizzle-orm";
+
 
 export async function GET() {
-  // Total users
   const totalUsers = await db
     .select()
     .from(user)
@@ -11,7 +12,7 @@ export async function GET() {
 
   const activeSubscriptions = await db
     .select()
-    .from(subscription)
+    .from(subscription).where(eq(subscription.status, "active"))
     .then((res) => res.length);
 
   const totalRevenue = await db

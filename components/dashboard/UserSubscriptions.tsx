@@ -20,7 +20,6 @@ import {
   Pause,
   Play,
   Trash2,
-  Clock,
   Utensils,
   AlertTriangle,
 } from "lucide-react";
@@ -34,7 +33,6 @@ interface Subscription {
   allergies?: string;
   totalPrice: number;
   status: "active" | "paused" | "cancelled";
-  nextDelivery: string;
   createdAt: string;
 }
 
@@ -51,38 +49,17 @@ export function UserSubscriptions({ userId }: UserSubscriptionsProps) {
 
   useEffect(() => {
     fetchSubscriptions();
-  }, [userId]);
+  }, []);
 
   const fetchSubscriptions = async () => {
+    setLoading(true);
     try {
-      // Simulate API call - replace with actual API
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      const mockSubscriptions: Subscription[] = [
-        {
-          id: "sub_1",
-          plan: "protein",
-          mealTypes: ["breakfast", "lunch"],
-          deliveryDays: ["monday", "wednesday", "friday"],
-          allergies: "Nuts, Dairy",
-          totalPrice: 516000,
-          status: "active",
-          nextDelivery: "2024-01-15",
-          createdAt: "2024-01-01",
-        },
-        {
-          id: "sub_2",
-          plan: "diet",
-          mealTypes: ["lunch", "dinner"],
-          deliveryDays: ["tuesday", "thursday", "saturday"],
-          totalPrice: 387000,
-          status: "paused",
-          nextDelivery: "2024-01-20",
-          createdAt: "2023-12-15",
-        },
-      ];
-
-      setSubscriptions(mockSubscriptions);
+      const response = await fetch("/api/subscriptions");
+      if (!response.ok) {
+        throw new Error("Failed to fetch subscriptions");
+      }
+      const data: Subscription[] = await response.json();
+      setSubscriptions(data);
     } catch (error) {
       console.error("Failed to fetch subscriptions:", error);
     } finally {
@@ -116,30 +93,37 @@ export function UserSubscriptions({ userId }: UserSubscriptionsProps) {
   };
 
   const handleSubscriptionAction = async (
-    action: string,
-    subscriptionId: string
+    subscriptionId: string,
+    status: "active" | "paused" | "cancelled"
   ) => {
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      const response = await fetch(
+        `/api/subscriptions/${subscriptionId}/status`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ status }),
+        }
+      );
 
+      if (!response.ok) {
+        throw new Error(`Failed to update subscription to ${status}`);
+      }
+
+      const updatedSubscription = await response.json();
+
+      // Update state secara lokal untuk merefleksikan perubahan di UI
       setSubscriptions((prev) =>
         prev.map((sub) =>
           sub.id === subscriptionId
-            ? {
-                ...sub,
-                status:
-                  action === "pause"
-                    ? "paused"
-                    : action === "resume"
-                      ? "active"
-                      : "cancelled",
-              }
+            ? { ...sub, status: updatedSubscription.status }
             : sub
         )
       );
     } catch (error) {
-      console.error(`Failed to ${action} subscription:`, error);
+      console.error(`Failed to ${status} subscription:`, error);
     }
   };
 
@@ -209,7 +193,6 @@ export function UserSubscriptions({ userId }: UserSubscriptionsProps) {
                 <Card className="shadow-lg border-0 hover:shadow-xl transition-all duration-300">
                   <CardBody className="p-6">
                     <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-                      {/* Subscription Info */}
                       <div className="flex-1 space-y-4">
                         <div className="flex items-center gap-4">
                           <div
@@ -247,21 +230,13 @@ export function UserSubscriptions({ userId }: UserSubscriptionsProps) {
                               Meals: {subscription.mealTypes.join(", ")}
                             </span>
                           </div>
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-4">
                             <Calendar className="w-4 h-4 text-gray-400" />
                             <span className="text-sm text-gray-600">
                               Days: {subscription.deliveryDays.length} days/week
                             </span>
                           </div>
-                          <div className="flex items-center gap-2">
-                            <Clock className="w-4 h-4 text-gray-400" />
-                            <span className="text-sm text-gray-600">
-                              Next:{" "}
-                              {new Date(
-                                subscription.nextDelivery
-                              ).toLocaleDateString()}
-                            </span>
-                          </div>
+
                           {subscription.allergies && (
                             <div className="flex items-center gap-2">
                               <AlertTriangle className="w-4 h-4 text-orange-400" />
@@ -294,7 +269,10 @@ export function UserSubscriptions({ userId }: UserSubscriptionsProps) {
                             size="sm"
                             startContent={<Pause className="w-4 h-4" />}
                             onPress={() =>
-                              handleSubscriptionAction("pause", subscription.id)
+                              handleSubscriptionAction(
+                                subscription.id,
+                                "paused"
+                              )
                             }
                           >
                             Pause
@@ -307,26 +285,30 @@ export function UserSubscriptions({ userId }: UserSubscriptionsProps) {
                             startContent={<Play className="w-4 h-4" />}
                             onPress={() =>
                               handleSubscriptionAction(
-                                "resume",
-                                subscription.id
+                                subscription.id,
+                                "active"
                               )
                             }
                           >
                             Resume
                           </Button>
                         ) : null}
-
-                        <Button
-                          color="danger"
-                          variant="bordered"
-                          size="sm"
-                          startContent={<Trash2 className="w-4 h-4" />}
-                          onPress={() =>
-                            handleSubscriptionAction("cancel", subscription.id)
-                          }
-                        >
-                          Cancel
-                        </Button>
+                        {subscription.status !== "cancelled" ? (
+                          <Button
+                            color="danger"
+                            variant="bordered"
+                            size="sm"
+                            startContent={<Trash2 className="w-4 h-4" />}
+                            onPress={() =>
+                              handleSubscriptionAction(
+                                subscription.id,
+                                "cancelled"
+                              )
+                            }
+                          >
+                            Cancel
+                          </Button>
+                        ) : null}
                       </div>
                     </div>
                   </CardBody>

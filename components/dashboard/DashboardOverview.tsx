@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Card, CardBody, CardHeader } from "@heroui/card";
+import { Card, CardBody } from "@heroui/card";
 import {
   BarChart3,
 } from "lucide-react";
@@ -32,7 +32,7 @@ export function DashboardOverview({
           setStats([
             { label: "Total Users", value: data.totalUsers.toLocaleString(), change: "+12%", color: "from-blue-500 to-cyan-500" },
             { label: "Active Subscriptions", value: data.activeSubscriptions.toLocaleString(), change: "+8%", color: "from-green-500 to-emerald-500" },
-            { label: "Total Revenue", value: `Rp ${data.totalRevenue.toLocaleString()}`, change: "+15%", color: "from-purple-500 to-pink-500" },
+            { label: "Monthly Recurring Revenue", value: `Rp ${data.totalRevenue.toLocaleString()}`, change: "+15%", color: "from-purple-500 to-pink-500" },
             { label: "Meals Delivered", value: data.mealsDelivered.toLocaleString(), change: "+22%", color: "from-orange-500 to-red-500" },
           ]);
           setLoading(false);
@@ -46,7 +46,7 @@ export function DashboardOverview({
             { label: "My Subscriptions", value: data.mySubscriptions.toLocaleString(), change: "+5%", color: "from-blue-500 to-cyan-500" },
             { label: "Meals Delivered", value: data.mealsDelivered.toLocaleString(), change: "+10%", color: "from-green-500 to-emerald-500" },
             { label: "Total Spend", value: `Rp ${data.totalSpend.toLocaleString()}`, change: "+8%", color: "from-purple-500 to-pink-500" },
-            { label: "Profile Views", value: data.profileViews.toLocaleString(), change: "+15%", color: "from-orange-500 to-red-500" },
+            { label: "Active Subscription", value: data.activeSubscriptionsCount.toLocaleString(), change: "+15%", color: "from-orange-500 to-red-500" },
           ]);
           setLoading(false);
         });
