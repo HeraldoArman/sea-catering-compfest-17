@@ -29,7 +29,7 @@ const viewport: Viewport = {
 function LayoutContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
-  const hideNavbarPages = ["/sign-in", "/sign-up"];
+  const hideNavbarPages = ["/sign-in", "/sign-up",];
   const shouldHideNavbar = hideNavbarPages.includes(pathname);
 
   return (

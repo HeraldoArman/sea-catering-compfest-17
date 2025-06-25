@@ -51,7 +51,7 @@ export const Navbar = () => {
   const pathname = usePathname();
   const { data, isPending } = authClient.useSession();
   const router = useRouter();
-  
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -223,6 +223,7 @@ export const Navbar = () => {
                   <DropdownItem
                     key="dashboard"
                     startContent={<LayoutDashboard className="w-4 h-4" />}
+                    onClick={() => router.push("/dashboard")}
                   >
                     Dashboard
                   </DropdownItem>
@@ -387,6 +388,7 @@ export const Navbar = () => {
                         variant="light"
                         className="w-full justify-start"
                         startContent={<LayoutDashboard className="w-4 h-4" />}
+                        onClick={() => router.push("/dashboard")}
                         size="lg"
                       >
                         dashboard
