@@ -7,11 +7,8 @@ import { Button } from "@heroui/button";
 import { Card, CardBody } from "@heroui/card";
 import Link from "next/link";
 import { ArrowRight, Sparkles, Gift, Clock } from "lucide-react";
-import { useState } from "react";
 
 export const CTASection = () => {
-  const [email, setEmail] = useState("");
-
   return (
     <section className="py-24 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 relative overflow-hidden">
       <div className="absolute inset-0 overflow-hidden">
@@ -153,7 +150,7 @@ export const CTASection = () => {
                     className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                     endContent={<ArrowRight className="w-5 h-5" />}
                     as={Link}
-                    href="/sign-up"
+                    href="/subscription"
                   >
                     Claim Your Free Week
                   </Button>

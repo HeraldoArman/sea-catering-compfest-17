@@ -9,7 +9,8 @@ import { Providers } from "./providers";
 
 import { siteConfig } from "@/config/site";
 import { Navbar } from "@/components/navbar";
-
+import { HeroUIProvider } from "@heroui/react";
+import { ToastProvider } from "@heroui/toast";
 const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -55,7 +56,13 @@ export default function ClientLayout({
         forcedTheme: "light",
       }}
     >
-      <LayoutContent>{children}</LayoutContent>
+      <LayoutContent>
+        {" "}
+        <HeroUIProvider>
+          <ToastProvider />
+          {children}
+        </HeroUIProvider>
+      </LayoutContent>
     </Providers>
   );
 }

@@ -7,51 +7,8 @@ import { Button } from "@heroui/button";
 import { Chip } from "@heroui/chip";
 import { Clock, Users, Flame, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
-
-const mealPlans = [
-  {
-    id: 1,
-    name: "Mediterranean Delight",
-    description:
-      "Fresh ingredients from the Mediterranean coast, rich in healthy fats and antioxidants.",
-    image:
-      "https://thebigmansworld.com/wp-content/uploads/2024/01/mediterranean-bowl-recipe.jpg",
-    calories: 450,
-    prepTime: "25 min",
-    servings: 2,
-    category: "Lunch",
-    ingredients: ["Quinoa", "Olives", "Feta", "Tomatoes", "Cucumber"],
-    color: "from-emerald-400 to-teal-500",
-  },
-  {
-    id: 2,
-    name: "Protein Power Bowl",
-    description:
-      "High-protein meal perfect for post-workout recovery and muscle building.",
-    image:
-      "https://healthclub.methodgym.com/wp-content/uploads/2025/01/meal-prep-containers-filled-with-food-scaled.jpeg",
-    calories: 520,
-    prepTime: "20 min",
-    servings: 1,
-    category: "Dinner",
-    ingredients: ["Grilled Chicken", "Sweet Potato", "Broccoli", "Avocado"],
-    color: "from-purple-400 to-pink-500",
-  },
-  {
-    id: 3,
-    name: "Fresh Garden Salad",
-    description:
-      "Crisp vegetables and leafy greens with a zesty lemon vinaigrette.",
-    image:
-      "https://www.tasteofhome.com/wp-content/uploads/2025/02/Favorite-Mediterranean-Salad_EXPS_TOHcom25_41556_MD_P2_02_05_1b.jpg",
-    calories: 280,
-    prepTime: "15 min",
-    servings: 1,
-    category: "Lunch",
-    ingredients: ["Mixed Greens", "Cherry Tomatoes", "Carrots", "Lemon"],
-    color: "from-green-400 to-emerald-500",
-  },
-];
+import Link from "next/link";
+import { mealPlans } from "../meal";
 
 export const MealPlanShowcase = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -182,6 +139,8 @@ export const MealPlanShowcase = () => {
                         <Button
                           size="lg"
                           className={`bg-gradient-to-r ${currentMeal.color} text-white font-semibold px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300`}
+                          as={Link}
+                          href="/subscription"
                         >
                           Add to Meal Plan
                         </Button>

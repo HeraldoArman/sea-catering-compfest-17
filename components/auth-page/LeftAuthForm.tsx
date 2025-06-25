@@ -1,7 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import NextLink from "next/link";
-import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 
 interface LeftAuthFormProps {
@@ -22,7 +20,6 @@ export const LeftAuthForm = ({title, description, imageurl} : LeftAuthFormProps)
         <div className="relative h-[600px] rounded-3xl overflow-hidden shadow-2xl">
           <Image
             src = {imageurl}
-            // src="https://cdn-abeco.nitrocdn.com/vMCLEGbZccgRIgpGXvgkDDYcPokgENUq/assets/images/optimized/rev-300bd7b/gatheringdreams.com/wp-content/uploads/2022/10/healthy-meal-prep-2022-main-low.jpg"
             alt="Healthy meal"
             fill
             className="object-cover"
