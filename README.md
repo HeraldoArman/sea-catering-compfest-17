@@ -6,7 +6,6 @@ SEA Catering adalah web app yang dibuat dengan Next.js 15, dirancang untuk menye
 ## Teknologi yang Digunakan
 
 Proyek ini dibangun menggunakan tumpukan teknologi modern yang berfokus pada kinerja dan pengalaman pengembang:
-
   * **Framework**: [Next.js 15](https://nextjs.org/docs/getting-started) (dengan App Router & Turbopack)
   * **UI Komponen**: [HeroUI](https://heroui.com/)
   * **Styling**: [Tailwind CSS](https://tailwindcss.com/) 
@@ -23,6 +22,15 @@ Proyek ini dibangun menggunakan tumpukan teknologi modern yang berfokus pada kin
   * **Desain Responsif**: Antarmuka yang sepenuhnya responsif yang berfungsi dengan baik di perangkat desktop dan seluler.
   * **Subscription System**: Sistem subscription yang terdiri dari Diet Plan – Rp30.000,00 per meal, Protein Plan – Rp40.000,00 per meal, Royal Plan – Rp60.000,00 per meal.
   * **Dashboard Admin dan User**: Dashboard untuk mengeloloa subscription, pengeluaran, dan pendapatan
+
+## Skema Database
+- usersTable: Tabel untuk pengguna.
+- user: Tabel untuk pengguna dengan peran.
+- session: Tabel untuk sesi pengguna.
+- account: Tabel untuk akun yang ditautkan.
+- verification: Tabel untuk verifikasi.
+- subscription: Tabel untuk langganan.
+Enum juga digunakan untuk peran pengguna (userRole), paket langganan (subscriptionPlan), dan status langganan (subscriptionStatus).
 
 
 ## Menjalankan Project
@@ -96,46 +104,41 @@ Berikut adalah gambaran umum tentang struktur direktori proyek:
 
 ```
 /
-├── app/                  # Direktori Aplikasi Next.js 15
-│   ├── (auth)/           # Grup rute untuk halaman autentikasi
-│   │   ├── sign-in/
-│   │   └── sign-up/
-│   ├── api/              # Rute API
-│   │   └── auth/
-│   │       └── [...all]/ # Rute penampung untuk Better Auth
-│   ├── contact/          # Halaman Kontak
-│   ├── products/         # Halaman Produk/Harga
-│   ├── subscription/     # Halaman Langganan
-│   ├── layout.tsx        # Layout utama
-│   ├── page.tsx          # Halaman utama (Beranda)
-│   └── providers.tsx     # Penyedia tema dan UI
-├── components/           # Komponen React yang dapat digunakan kembali
-│   ├── landing-page/     # Komponen khusus untuk halaman utama
-│   ├── auth-page/        # Komponen untuk halaman masuk/daftar
-│   ├── Footer.tsx
-│   └── navbar.tsx
-├── config/               # File konfigurasi
-│   ├── fonts.ts
-│   └── site.ts
-├── db/                   # Konfigurasi dan skema Drizzle ORM
+├── sea-catering/                                        
+│   ├── (auth)/                                 
+│   │   ├── sign-in/page.tsx
+│   │   └── sign-up/page.tsx
+│   ├── (main)/                                 # Main Route
+│   │   └── page.tsx
+│   ├── api/                                    # Route API backend
+│   │   ├── auth/[...all]/                      # Rute Catch-all untuk Otentikasi (Better Auth)
+│   │   ├── dashboard/
+│   │   │   ├── admin/
+│   │   │   └── user/
+│   │   ├── subscription/
+│   │   └── subscriptions/
+│   │       └── [id]/status/
+│   ├── dashboard/
+│   ├── subscription/
+├── components/                                 # Komponen React
+│   ├── auth-page/                      
+│   ├── dashboard/                 
+│   ├── landing-page/                       
+│   ├── subcription/                       
+├── config/                                     # Konfigurasi
+├── db/
 │   └── schema.ts
-├── utils/                # Fungsi utilitas
-│   ├── auth-client.ts    # Konfigurasi klien Better Auth
-│   └── auth.ts           # Konfigurasi server Better Auth
-├── drizzle.config.ts     # Konfigurasi Drizzle Kit
-├── next.config.js        # Konfigurasi Next.js
-└── tailwind.config.js    # Konfigurasi Tailwind CSS
+├── drizzle/                                    # File Migrasi Database Drizzle
+├── middleware.ts                              
+├── public/                                   
+├── styles/                               
+├── types/                              
+└── utils/                                 
+
 ```
 
-## TODO
-
-Berdasarkan `README.md` awal, berikut adalah beberapa tugas yang masih perlu diselesaikan:
-
-  * [ ] benerin hero, masih belom bisa mencet beberapa tombol
-  * [ ] Perbaiki tata letak bagian atas dari komponen Hero.
-  * [ ] Ganti logo placeholder dengan logo SEA Catering yang sebenarnya.
-
-
 ## Future Improvements
+- Menambahkan fitur Reactivation
+- Improve SEO
+- Improve copywriting
 
-- belum ada

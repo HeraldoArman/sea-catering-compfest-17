@@ -345,12 +345,6 @@ export function UserSubscriptions({ userId }: UserSubscriptionsProps) {
             <Button variant="bordered" onPress={onClose}>
               Close
             </Button>
-            <Button
-              color="primary"
-              onPress={() => (window.location.href = "/contact")}
-            >
-              Contact Support
-            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
