@@ -4,6 +4,8 @@ const protectedRoutes = ["/subscription", "/dashboard"]
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
+  
+  console.log("Cookies on request:", request.cookies.getAll());
 
   if (
     pathname.startsWith("/_next") ||
@@ -27,9 +29,11 @@ export async function middleware(request: NextRequest) {
     if (!sessionToken) {
 
       const signUpUrl = new URL("/sign-up", request.url)
+      console.log("Redirecting to sign-up page due to missing session token")
       return NextResponse.redirect(signUpUrl)
     }
-
+    console.log("Session token found, proceeding with request")
+    console.log("Session Token:", sessionToken)
     return NextResponse.next()
   } catch (error) {
     console.error("Middleware auth error:", error)

@@ -32,6 +32,11 @@ export const auth = betterAuth({
     cookieCache: {
       enabled: true,
       maxAge: 60 * 60 * 24 * 7,
+      cookie: {
+        domain: "sea-catering-compfest-17.vercel.app",
+        path: "/",
+        sameSite: "lax",
+      },
     },
   },
 });
