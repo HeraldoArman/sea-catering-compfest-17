@@ -48,18 +48,18 @@ Proyek ini menggunakan banyak paket yang memerlukan flag `--legacy-peer-deps` sa
 npm install --legacy-peer-deps
 ```
 
-### 3\. Pengaturan Variabel Lingkungan
+### 3\. Pengaturan Enviroment Variable untuk local
 
 Buat file `.env` di direktori root proyek Anda dan tambahkan variabel lingkungan berikut.
 
 ```env
-BETTER_AUTH_SECRET=""
-BETTER_AUTH_URL=""
+BETTER_AUTH_SECRET="BIVEyOl9mkX9QHFbsIC2NKDEHJHPKLZw"
+BETTER_AUTH_URL="http://localhost:3000"
 
-DATABASE_URL=""
+DATABASE_URL="postgresql://sea-catering_owner:npg_alqg4RmkZOT0@ep-snowy-queen-a1wiatd8-pooler.ap-southeast-1.aws.neon.tech/sea-catering?sslmode=require"
 
-GOOGLE_CLIENT_ID=""
-GOOGLE_CLIENT_SECRET=""
+GOOGLE_CLIENT_ID="328939702827-mem75hv8krgl4b8ks67hrsjmcouc8ec6.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET="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"
 ```
 
 ### 4\. Migrasi Database
