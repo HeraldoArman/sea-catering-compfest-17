@@ -105,12 +105,16 @@ export const Hero = () => {
             >
               <div className="flex items-center gap-2">
                 <div className="flex -space-x-2">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div
+                    {[1, 2, 3, 4].map((i) => (
+                    <Image
                       key={i}
-                      className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 border-2 border-white"
+                      src={`https://randomuser.me/api/portraits/women/${i}.jpg`}
+                      alt={`User ${i}`}
+                      width={32}
+                      height={32}
+                      className="w-8 h-8 rounded-full border-2 border-white object-cover"
                     />
-                  ))}
+                    ))}
                 </div>
                 <div className="ml-2">
                   <div className="flex items-center gap-1">

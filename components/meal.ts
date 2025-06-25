@@ -57,7 +57,7 @@ export const floatingCards = [
   },
   {
     id: 2,
-    title: "Protein Power Pack",
+    title: "Protein Plan",
     price: "Rp40.000",
     rating: 4.8,
     image:
@@ -67,7 +67,7 @@ export const floatingCards = [
   },
   {
     id: 3,
-    title: "Fresh Garden Salad",
+    title: "Diet Plan",
     price: "Rp30.000",
     rating: 4.7,
     image:

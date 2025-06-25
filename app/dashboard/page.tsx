@@ -5,10 +5,9 @@ import { motion } from "framer-motion";
 
 import { Chip } from "@heroui/chip";
 import { Tabs, Tab } from "@heroui/tabs";
-import { Avatar } from "@heroui/avatar";
+import { Avatar, AvatarIcon } from "@heroui/avatar";
 import {
   User,
-  Settings,
   Package,
   BarChart3,
   Users,
@@ -18,12 +17,10 @@ import {
 import { authClient } from "@/utils/auth-client";
 import { useRouter } from "next/navigation";
 import { UserSubscriptions } from "@/components/dashboard/UserSubscriptions";
-import { UserProfile } from "@/components/dashboard/UserProfile";
+
 import { AdminUserManagement } from "@/components/dashboard/AdminUserManagement";
 import { AdminAnalytics } from "@/components/dashboard/AdminAnalytics";
-import { MealPreferences } from "@/components/dashboard/MealPreferences";
 import { DashboardOverview } from "@/components/dashboard/DashboardOverview";
-
 
 export default function DashboardPage() {
   const { data: session, isPending } = authClient.useSession();
@@ -55,19 +52,15 @@ export default function DashboardPage() {
   const user = session.user as UserWithRole;
   const isAdmin = user.role === "admin";
 
-
   const userTabs = [
     { key: "overview", label: "Overview", icon: BarChart3 },
     { key: "subscriptions", label: "My Subscriptions", icon: Package },
-    { key: "preferences", label: "Meal Preferences", icon: Settings },
-    { key: "profile", label: "Profile", icon: User },
   ];
 
   const adminTabs = [
     { key: "overview", label: "Overview", icon: BarChart3 },
     { key: "users", label: "User Management", icon: Users },
     { key: "analytics", label: "Analytics", icon: BarChart3 },
-    { key: "profile", label: "Profile", icon: User },
   ];
 
   const tabs = isAdmin ? adminTabs : userTabs;
@@ -86,9 +79,11 @@ export default function DashboardPage() {
             <div className="flex items-center gap-4">
               <Avatar
                 size="lg"
-                name={session.user.name}
+                src={session?.user.image ?? undefined}
+                icon={!session?.user.image ? <AvatarIcon /> : undefined}
                 className="border-4 border-white shadow-lg"
               />
+
               <div>
                 <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 flex items-center gap-2">
                   Welcome back, {session.user.name}
@@ -117,7 +112,6 @@ export default function DashboardPage() {
           </div>
         </motion.div>
 
-        {/* Dashboard Content */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -152,10 +146,7 @@ export default function DashboardPage() {
                   {tab.key === "subscriptions" && (
                     <UserSubscriptions userId={session.user.id} />
                   )}
-                  {tab.key === "preferences" && (
-                    <MealPreferences userId={session.user.id} />
-                  )}
-                  {tab.key === "profile" && <UserProfile user={session.user} />}
+
                   {tab.key === "users" && isAdmin && <AdminUserManagement />}
                   {tab.key === "analytics" && isAdmin && <AdminAnalytics />}
                 </div>
@@ -167,4 +158,3 @@ export default function DashboardPage() {
     </div>
   );
 }
-

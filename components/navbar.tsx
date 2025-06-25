@@ -29,19 +29,9 @@ const navItems = [
     description: "Start your healthy journey with SEA Catering",
   },
   {
-    label: "Products",
-    href: "/products",
-    description: "Browse our nutritious meal plans and offerings",
-  },
-  {
     label: "Subscription",
     href: "/subscription",
     description: "Flexible plans for daily healthy meals delivered",
-  },
-  {
-    label: "Contact Us",
-    href: "/contact",
-    description: "Get in touch with our team for support or inquiries",
   },
 ];
 
@@ -209,7 +199,8 @@ export const Navbar = () => {
                       <Avatar
                         size="sm"
                         className="border-2 border-gray-200"
-                        icon={<AvatarIcon />}
+                        src={data?.user.image ?? undefined}
+                        icon={!data?.user.image ? <AvatarIcon /> : undefined}
                       />
                       <ChevronDown className="w-4 h-4 text-gray-600 transition-colors duration-300" />
                     </div>

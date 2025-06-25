@@ -6,6 +6,9 @@ export const userRole = pgEnum("user_role", ["user", "admin"]);
 // Define enum for subscription plans
 export const subscriptionPlan = pgEnum("subscription_plan", ["diet", "protein", "royal"]);
 
+// Define enum for subscription status
+export const subscriptionStatus = pgEnum("subscription_status", ["active", "paused", "cancelled"]);
+
 export const usersTable = pgTable("users", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   name: varchar({ length: 255 }).notNull(),
@@ -64,10 +67,11 @@ export const subscription = pgTable("subscription", {
   id: text('id').primaryKey(),
   userId: text('user_id').notNull().references(() => user.id, { onDelete: 'cascade' }),
   plan: subscriptionPlan('plan').notNull(),
-  mealTypes: jsonb('meal_types').notNull(),
-  deliveryDays: jsonb('delivery_days').notNull(),
+  mealTypes: jsonb('meal_types').$type<string[]>().notNull(),
+  deliveryDays: jsonb('delivery_days').$type<string[]>().notNull(), 
   allergies: text('allergies'),
   totalPrice: integer('total_price').notNull(),
+  status: subscriptionStatus('status').notNull().$defaultFn(() => 'active'),
   createdAt: timestamp('created_at').$defaultFn(() => new Date()).notNull(),
   updatedAt: timestamp('updated_at').$defaultFn(() => new Date()).notNull()
 });
@@ -80,5 +84,6 @@ export const schema = {
   verification,
   subscription,
   userRole,
-  subscriptionPlan
+  subscriptionPlan,
+  subscriptionStatus
 };
