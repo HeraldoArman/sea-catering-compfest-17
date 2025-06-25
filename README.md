@@ -61,6 +61,7 @@ npm install --legacy-peer-deps
 Buat file `.env` di direktori root proyek Anda dan tambahkan variabel lingkungan berikut.
 
 ```env
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
 BETTER_AUTH_SECRET="BIVEyOl9mkX9QHFbsIC2NKDEHJHPKLZw"
 BETTER_AUTH_URL="http://localhost:3000"
 
