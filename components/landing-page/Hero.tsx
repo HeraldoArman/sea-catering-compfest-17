@@ -113,6 +113,7 @@ export const Hero = () => {
                       width={32}
                       height={32}
                       className="w-8 h-8 rounded-full border-2 border-white object-cover"
+                      unoptimized
                     />
                     ))}
                 </div>
@@ -137,7 +138,7 @@ export const Hero = () => {
                 size="lg"
                 className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold px-8 py-6 text-lg rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                 endContent={<ArrowRight className="w-5 h-5" />}
-                
+                href="/subscriptions"
               >
                 Start Your Journey
               </Button>
