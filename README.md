@@ -99,6 +99,13 @@ npm run start
 
 Buka [http://localhost:3000](http://localhost:3000) di browser untuk membuka proyek
 
+### dashboard admin
+untuk mengakses dashboard admin, saat login gunakan
+
+email: admin@gmail.com
+
+password: ThisIsAdminPassword123!
+
 ## Struktur Proyek
 
 Berikut adalah gambaran umum tentang struktur direktori proyek:
