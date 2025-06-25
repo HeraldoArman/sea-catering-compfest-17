@@ -64,6 +64,7 @@ export const MealPlanShowcase = () => {
                         alt={currentMeal.name}
                         fill
                         className="object-cover"
+                        unoptimized
                       />
                       <div
                         className={`absolute inset-0 bg-gradient-to-br ${currentMeal.color} opacity-20`}
