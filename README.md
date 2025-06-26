@@ -48,7 +48,7 @@ Pastikan Anda memiliki Node.js (versi 18.18.0 atau lebih baru direkomendasikan) 
 ### 1\. Clone Repository
 
 ```bash
-git clone https://github.com/heraldoarman/sea-catering.git
+git clone https://github.com/heraldoarman/sea-catering.git sea-catering
 cd sea-catering
 ```
 
