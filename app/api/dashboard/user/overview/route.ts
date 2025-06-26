@@ -39,10 +39,12 @@ export async function GET() {
     const activeSubscriptions = await db
       .select()
       .from(subscription)
-      .where(eq(subscription.status, "active"));
+      .where(eq(subscription.status, "active") && eq(subscription.userId, userId));
 
+      
+    console.log("Active Subscriptions:", activeSubscriptions);
     const activeSubscriptionsCount = activeSubscriptions.length;
-
+    console.log(activeSubscriptionsCount);
     return NextResponse.json({
       mySubscriptions,
       mealsDelivered,
