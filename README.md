@@ -62,7 +62,7 @@ npm install --legacy-peer-deps
 
 ### 3\. Pengaturan Enviroment Variable untuk local
 
-Buat file `.env` di direktori root proyek Anda dan tambahkan variabel lingkungan berikut.
+Buat file `.env` di direktori root proyek Anda dan tambahkan enviroment variable berikut.
 
 ```env
 NEXT_PUBLIC_APP_URL="http://localhost:3000"
