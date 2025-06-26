@@ -4,6 +4,7 @@ import { StatsSection } from "@/components/landing-page/StatsSection";
 import { MealPlanShowcase } from "@/components/landing-page/MealPlanShowcase";
 import { CTASection } from "@/components/landing-page/CTASection";
 import { TestimonialsCarousel } from "@/components/landing-page/TestimonialsCarousel";
+
 export default function Home() {
   return (
     <div className="min-h-screen">

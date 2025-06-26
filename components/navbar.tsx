@@ -106,7 +106,7 @@ export const Navbar = () => {
           }}
           style={{ zIndex: "inherit" }}
         >
-          {/* Brand Section - Fixed width */}
+
           <NavbarContent className="basis-auto sm:basis-1/4" justify="start">
             <NavbarBrand as="li" className="gap-2 sm:gap-3 max-w-fit">
               <NextLink

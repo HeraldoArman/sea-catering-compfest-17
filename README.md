@@ -3,6 +3,10 @@
 SEA Catering adalah web app yang dibuat dengan Next.js 15, dirancang untuk menyelesaikan tugas seleksi Compfest Software Engineering Academy
 
 [Link](https://docs.google.com/document/d/1-YbUTsv-493hiLTDzMspvi-l4SN1d-gAW3hPDm2JwOc/edit?tab=t.lum0njsgxnby) penugasan
+
+Link deployment [https://sea-catering-compfest-17.vercel.app/](https://sea-catering-compfest-17.vercel.app/)
+
+
 ## Teknologi yang Digunakan
 
 Proyek ini dibangun menggunakan tumpukan teknologi modern yang berfokus pada kinerja dan pengalaman pengembang:

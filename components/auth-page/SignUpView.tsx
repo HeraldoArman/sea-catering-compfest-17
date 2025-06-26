@@ -12,13 +12,15 @@ import { Input } from "@heroui/input";
 import { Divider } from "@heroui/divider";
 import { Link } from "@heroui/link";
 import NextLink from "next/link";
-import { Eye, EyeOff, Mail, Lock, ArrowRight, ArrowLeft } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, ArrowRight } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
 import { FaGoogle } from "react-icons/fa";
 import { Alert } from "@heroui/alert";
 import { authClient } from "@/utils/auth-client";
 import { LeftAuthForm } from "./LeftAuthForm";
 import { useRouter } from "next/navigation";
+
+
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
   email: z.string().email(),

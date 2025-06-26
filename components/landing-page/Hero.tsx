@@ -2,7 +2,7 @@
 
 import { Button } from "@heroui/button";
 import { Card, CardBody } from "@heroui/card";
-import { ArrowRight, Play, Star, Award, Sparkles } from "lucide-react";
+import { ArrowRight, Star, Sparkles } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { floatingCards } from "../meal";

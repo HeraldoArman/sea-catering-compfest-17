@@ -2,6 +2,7 @@ import React from "react";
 import NextLink from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
+
 export const BackHome = () => {
   return (
     <motion.div
