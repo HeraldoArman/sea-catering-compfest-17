@@ -14,7 +14,7 @@ Proyek ini dibangun menggunakan tumpukan teknologi modern yang berfokus pada kin
   * **UI Komponen**: [HeroUI](https://heroui.com/)
   * **Styling**: [Tailwind CSS](https://tailwindcss.com/) 
   * **ORM**: [Drizzle ORM](https://orm.drizzle.team/) 
-  * **Autentikasi**: [Better Auth](https://www.google.com/search?q=https://better-auth.dev/)
+  * **Autentikasi**: [Better Auth](https://www.better-auth.com/)
   * **Bahasa Pemrograman**: [TypeScript](https://www.typescriptlang.org/)
   * **Animasi**: [Framer Motion](https://www.framer.com/motion/) 
   * **Database**: PostgreSQL dengan [Neon](https://neon.com/)
