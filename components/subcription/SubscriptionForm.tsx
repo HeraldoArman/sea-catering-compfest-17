@@ -22,10 +22,13 @@ import {
   Calculator,
   CheckCircle,
 } from "lucide-react";
-import { authClient } from "@/utils/auth-client";
 import { useRouter } from "next/navigation";
 import { addToast } from "@heroui/toast";
+
 import { plans } from "../meal";
+
+import { authClient } from "@/utils/auth-client";
+import Image from "next/image";
 const subscriptionSchema = z.object({
   name: z
     .string()
@@ -46,7 +49,6 @@ const subscriptionSchema = z.object({
 });
 
 type SubscriptionFormData = z.infer<typeof subscriptionSchema>;
-
 
 const mealTypes = [
   { id: "breakfast", name: "Breakfast", icon: "🌅" },
@@ -86,6 +88,7 @@ export const SubscriptionForm = () => {
       allergies: "",
     },
   });
+
   console.log(data?.user.name);
   useEffect(() => {
     if (data?.user?.name) {
@@ -94,11 +97,13 @@ export const SubscriptionForm = () => {
   }, [data?.user?.name, setValue]);
 
   const watchedValues = watch();
+
   useEffect(() => {
     const { plan, mealTypes, deliveryDays } = watchedValues;
 
     if (plan && mealTypes?.length > 0 && deliveryDays?.length > 0) {
       const selectedPlan = plans.find((p) => p.id === plan);
+
       if (selectedPlan) {
         const planPrice = selectedPlan.price;
         const mealCount = mealTypes.length;
@@ -106,6 +111,7 @@ export const SubscriptionForm = () => {
         const multiplier = 4.3; // Monthly multiplier
 
         const total = planPrice * mealCount * dayCount * multiplier;
+
         setTotalPrice(total);
       }
     } else {
@@ -132,6 +138,7 @@ export const SubscriptionForm = () => {
 
       if (!res.ok) {
         const err = await res.json();
+
         throw new Error(err.message || "Unknown error");
       }
 
@@ -163,10 +170,10 @@ export const SubscriptionForm = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12">
       <div className="container mx-auto px-6 max-w-6xl">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
           className="text-center mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          transition={{ duration: 0.8 }}
         >
           <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
             Create Your{" "}
@@ -182,8 +189,8 @@ export const SubscriptionForm = () => {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, x: -50 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <Card className="shadow-xl border-0">
@@ -194,7 +201,7 @@ export const SubscriptionForm = () => {
                   </h2>
                 </CardHeader>
                 <CardBody>
-                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+                  <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
                     <div className="space-y-4">
                       <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                         <User className="w-5 h-5" />
@@ -203,37 +210,37 @@ export const SubscriptionForm = () => {
 
                       <div className="grid md:grid-cols-2 gap-4">
                         <Controller
-                          name="name"
                           control={control}
+                          name="name"
                           render={({ field }) => (
                             <Input
                               {...field}
+                              errorMessage={errors.name?.message}
+                              isInvalid={!!errors.name}
                               label="Full Name *"
                               placeholder="Enter your full name"
-                              variant="bordered"
                               startContent={
                                 <User className="w-4 h-4 text-gray-400" />
                               }
-                              isInvalid={!!errors.name}
-                              errorMessage={errors.name?.message}
+                              variant="bordered"
                             />
                           )}
                         />
 
                         <Controller
-                          name="phone"
                           control={control}
+                          name="phone"
                           render={({ field }) => (
                             <Input
                               {...field}
+                              errorMessage={errors.phone?.message}
+                              isInvalid={!!errors.phone}
                               label="Active Phone Number *"
                               placeholder="Enter your phone number"
-                              variant="bordered"
                               startContent={
                                 <Phone className="w-4 h-4 text-gray-400" />
                               }
-                              isInvalid={!!errors.phone}
-                              errorMessage={errors.phone?.message}
+                              variant="bordered"
                             />
                           )}
                         />
@@ -249,33 +256,32 @@ export const SubscriptionForm = () => {
                       </h3>
 
                       <Controller
-                        name="plan"
                         control={control}
+                        name="plan"
                         render={({ field }) => (
                           <RadioGroup
+                            errorMessage={errors.plan?.message}
+                            isInvalid={!!errors.plan}
                             value={field.value}
                             onValueChange={field.onChange}
-                            isInvalid={!!errors.plan}
-                            errorMessage={errors.plan?.message}
                           >
                             <div className="grid md:grid-cols-3 gap-4">
                               {plans.map((plan) => (
                                 <div key={plan.id} className="relative">
-                                  <Radio value={plan.id} className="hidden" />
+                                  <Radio className="hidden" value={plan.id} />
                                   <Card
                                     isPressable
-                                    onPress={() => field.onChange(plan.id)}
                                     className={`cursor-pointer transition-all duration-300 overflow-hidden ${
                                       field.value === plan.id
                                         ? "ring-2 ring-blue-500 shadow-lg scale-105"
                                         : "hover:shadow-md hover:scale-102"
                                     }`}
+                                    onPress={() => field.onChange(plan.id)}
                                   >
-
-                                    <img
-                                      src={plan.image}
+                                    <Image
                                       alt={plan.name}
                                       className="w-full h-40 object-cover"
+                                      src={plan.image}
                                     />
                                     <CardBody className="p-4 text-center">
                                       <h4 className="font-bold text-lg text-gray-900 mb-1">
@@ -315,19 +321,19 @@ export const SubscriptionForm = () => {
                       </h3>
 
                       <Controller
-                        name="mealTypes"
                         control={control}
+                        name="mealTypes"
                         render={({ field }) => (
                           <CheckboxGroup
+                            errorMessage={errors.mealTypes?.message}
+                            isInvalid={!!errors.mealTypes}
                             value={field.value}
                             onValueChange={field.onChange}
-                            isInvalid={!!errors.mealTypes}
-                            errorMessage={errors.mealTypes?.message}
                           >
                             <div className="grid md:grid-cols-3 gap-4">
                               {mealTypes.map((meal) => (
                                 <Card key={meal.id} className="p-4">
-                                  <Checkbox value={meal.id} className="w-full">
+                                  <Checkbox className="w-full" value={meal.id}>
                                     <div className="flex items-center gap-3">
                                       <span className="text-2xl">
                                         {meal.icon}
@@ -347,7 +353,6 @@ export const SubscriptionForm = () => {
 
                     <Divider />
 
-
                     <div className="space-y-4">
                       <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                         <Calendar className="w-5 h-5" />
@@ -355,19 +360,19 @@ export const SubscriptionForm = () => {
                       </h3>
 
                       <Controller
-                        name="deliveryDays"
                         control={control}
+                        name="deliveryDays"
                         render={({ field }) => (
                           <CheckboxGroup
+                            errorMessage={errors.deliveryDays?.message}
+                            isInvalid={!!errors.deliveryDays}
                             value={field.value}
                             onValueChange={field.onChange}
-                            isInvalid={!!errors.deliveryDays}
-                            errorMessage={errors.deliveryDays?.message}
                           >
                             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-2">
                               {deliveryDays.map((day) => (
                                 <Card key={day.id} className="p-3">
-                                  <Checkbox value={day.id} className="w-full">
+                                  <Checkbox className="w-full" value={day.id}>
                                     <div className="text-center">
                                       <div className="font-medium text-sm">
                                         {day.short}
@@ -396,17 +401,21 @@ export const SubscriptionForm = () => {
                       </h3>
 
                       <Controller
-                        name="allergies"
                         control={control}
+                        name="allergies"
                         render={({ field }) => (
                           <div className="space-y-2">
-                            <label className="text-sm font-medium text-gray-700">
+                            <label
+                              className="text-sm font-medium text-gray-700"
+                              htmlFor="allergies"
+                            >
                               List any allergies or dietary restrictions
                             </label>
                             <textarea
                               {...field}
-                              placeholder="e.g., Nuts, Dairy, Gluten, Vegetarian preferences..."
                               className="w-full min-h-[100px] p-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors duration-200 resize-vertical"
+                              id="allergies"
+                              placeholder="e.g., Nuts, Dairy, Gluten, Vegetarian preferences..."
                               rows={3}
                             />
                           </div>
@@ -417,11 +426,11 @@ export const SubscriptionForm = () => {
                     {/* Submit Button */}
                     <div className="pt-6">
                       <Button
-                        type="submit"
-                        size="lg"
                         className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                        isLoading={isSubmitting}
                         isDisabled={totalPrice === 0}
+                        isLoading={isSubmitting}
+                        size="lg"
+                        type="submit"
                       >
                         {isSubmitting
                           ? "Creating Subscription..."
@@ -437,10 +446,10 @@ export const SubscriptionForm = () => {
           {/* Price Summary Section */}
           <div className="lg:col-span-1">
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
               className="sticky top-24"
+              initial={{ opacity: 0, x: 50 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
             >
               <Card className="shadow-xl border-0">
                 <CardHeader className="pb-4">
@@ -487,6 +496,7 @@ export const SubscriptionForm = () => {
                         <div className="flex flex-wrap gap-1">
                           {watchedValues.mealTypes.map((mealId) => {
                             const meal = mealTypes.find((m) => m.id === mealId);
+
                             return meal ? (
                               <Chip key={mealId} size="sm" variant="flat">
                                 {meal.icon} {meal.name}
@@ -512,8 +522,9 @@ export const SubscriptionForm = () => {
                         <div className="flex flex-wrap gap-1">
                           {watchedValues.deliveryDays.map((dayId) => {
                             const day = deliveryDays.find(
-                              (d) => d.id === dayId
+                              (d) => d.id === dayId,
                             );
+
                             return day ? (
                               <Chip key={dayId} size="sm" variant="flat">
                                 {day.short}

@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
+import { headers } from "next/headers";
+import { eq } from "drizzle-orm";
+
 import { db } from "@/index";
 import { subscription } from "@/db/schema";
 import { auth } from "@/utils/auth";
-import { headers } from "next/headers";
-import { eq } from "drizzle-orm";
 
 export async function GET() {
   try {
@@ -25,9 +26,10 @@ export async function GET() {
     return NextResponse.json(userSubscriptions);
   } catch (error) {
     console.error("Failed to fetch subscriptions:", error);
+
     return NextResponse.json(
       { error: "Internal Server Error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

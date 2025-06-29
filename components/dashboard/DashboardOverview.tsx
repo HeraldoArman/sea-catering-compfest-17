@@ -1,9 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Card, CardBody } from "@heroui/card";
-import {
-  BarChart3,
-} from "lucide-react";
+import { BarChart3 } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type Stat = {
@@ -23,30 +21,70 @@ export function DashboardOverview({
   const [stats, setStats] = useState<Stat[]>([]);
   const [loading, setLoading] = useState(true);
   const isAdminUser = isAdmin && user?.role === "admin";
+
   useEffect(() => {
     setLoading(true);
     if (isAdminUser) {
       fetch("/api/dashboard/admin/overview")
-        .then(res => res.json())
-        .then(data => {
+        .then((res) => res.json())
+        .then((data) => {
           setStats([
-            { label: "Total Users", value: data.totalUsers.toLocaleString(), change: "+12%", color: "from-blue-500 to-cyan-500" },
-            { label: "Active Subscriptions", value: data.activeSubscriptions.toLocaleString(), change: "+8%", color: "from-green-500 to-emerald-500" },
-            { label: "Monthly Recurring Revenue", value: `Rp ${data.totalRevenue.toLocaleString()}`, change: "+15%", color: "from-purple-500 to-pink-500" },
-            { label: "Meals Delivered", value: data.mealsDelivered.toLocaleString(), change: "+22%", color: "from-orange-500 to-red-500" },
+            {
+              label: "Total Users",
+              value: data.totalUsers.toLocaleString(),
+              change: "+12%",
+              color: "from-blue-500 to-cyan-500",
+            },
+            {
+              label: "Active Subscriptions",
+              value: data.activeSubscriptions.toLocaleString(),
+              change: "+8%",
+              color: "from-green-500 to-emerald-500",
+            },
+            {
+              label: "Monthly Recurring Revenue",
+              value: `Rp ${data.totalRevenue.toLocaleString()}`,
+              change: "+15%",
+              color: "from-purple-500 to-pink-500",
+            },
+            {
+              label: "Meals Delivered",
+              value: data.mealsDelivered.toLocaleString(),
+              change: "+22%",
+              color: "from-orange-500 to-red-500",
+            },
           ]);
           setLoading(false);
         });
-    }
-    else {
+    } else {
       fetch("/api/dashboard/user/overview")
-        .then(res => res.json())
-        .then(data => {
+        .then((res) => res.json())
+        .then((data) => {
           setStats([
-            { label: "My Subscriptions", value: data.mySubscriptions.toLocaleString(), change: "+5%", color: "from-blue-500 to-cyan-500" },
-            { label: "Meals Delivered", value: data.mealsDelivered.toLocaleString(), change: "+10%", color: "from-green-500 to-emerald-500" },
-            { label: "Total Spend", value: `Rp ${data.totalSpend.toLocaleString()}`, change: "+8%", color: "from-purple-500 to-pink-500" },
-            { label: "Active Subscription", value: data.activeSubscriptionsCount.toLocaleString(), change: "+15%", color: "from-orange-500 to-red-500" },
+            {
+              label: "My Subscriptions",
+              value: data.mySubscriptions.toLocaleString(),
+              change: "+5%",
+              color: "from-blue-500 to-cyan-500",
+            },
+            {
+              label: "Meals Delivered",
+              value: data.mealsDelivered.toLocaleString(),
+              change: "+10%",
+              color: "from-green-500 to-emerald-500",
+            },
+            {
+              label: "Total Spend",
+              value: `Rp ${data.totalSpend.toLocaleString()}`,
+              change: "+8%",
+              color: "from-purple-500 to-pink-500",
+            },
+            {
+              label: "Active Subscription",
+              value: data.activeSubscriptionsCount.toLocaleString(),
+              change: "+15%",
+              color: "from-orange-500 to-red-500",
+            },
           ]);
           setLoading(false);
         });
@@ -56,7 +94,7 @@ export function DashboardOverview({
   if (loading) {
     return (
       <div className="flex justify-center items-center py-12">
-        <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
         <span className="ml-4 text-gray-500">Loading stats...</span>
       </div>
     );
@@ -68,8 +106,8 @@ export function DashboardOverview({
         {stats.map((stat, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
           >
             <Card className="shadow-lg border-0 hover:shadow-xl transition-all duration-300">

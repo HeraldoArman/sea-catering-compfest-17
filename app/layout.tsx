@@ -1,10 +1,13 @@
-import type React from "react"
-import "@/styles/globals.css"
-import clsx from "clsx"
+import type React from "react";
 
-import { fontSans } from "@/config/fonts"
-import ClientLayout from "./clientLayout"
-import type { Metadata } from "next"
+import "@/styles/globals.css";
+import type { Metadata } from "next";
+
+import clsx from "clsx";
+
+import ClientLayout from "./clientLayout";
+
+import { fontSans } from "@/config/fonts";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -16,22 +19,24 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-
-  ],
+  themeColor: [{ media: "(prefers-color-scheme: light)", color: "white" }],
 };
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html suppressHydrationWarning lang="en">
       <head />
-      <body className={clsx("min-h-screen text-foreground bg-background font-sans antialiased", fontSans.variable)}>
+      <body
+        className={clsx(
+          "min-h-screen text-foreground bg-background font-sans antialiased",
+          fontSans.variable,
+        )}
+      >
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
-  )
+  );
 }

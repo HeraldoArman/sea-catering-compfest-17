@@ -2,26 +2,17 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-
 import { Chip } from "@heroui/chip";
 import { Tabs, Tab } from "@heroui/tabs";
 import { Avatar, AvatarIcon } from "@heroui/avatar";
-import {
-  User,
-  Package,
-  BarChart3,
-  Users,
-  Crown,
-  Shield,
-} from "lucide-react";
-import { authClient } from "@/utils/auth-client";
+import { User, Package, BarChart3, Users, Crown, Shield } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { UserSubscriptions } from "@/components/dashboard/UserSubscriptions";
 
+import { authClient } from "@/utils/auth-client";
+import { UserSubscriptions } from "@/components/dashboard/UserSubscriptions";
 import { AdminUserManagement } from "@/components/dashboard/AdminUserManagement";
 import { AdminAnalytics } from "@/components/dashboard/AdminAnalytics";
 import { DashboardOverview } from "@/components/dashboard/DashboardOverview";
-
 
 export default function DashboardPage() {
   const { data: session, isPending } = authClient.useSession();
@@ -38,7 +29,7 @@ export default function DashboardPage() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
           <p className="text-gray-600">Loading dashboard...</p>
         </div>
       </div>
@@ -71,18 +62,18 @@ export default function DashboardPage() {
       <div className="container mx-auto px-6 py-8 max-w-7xl">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
           className="mb-8"
+          initial={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.6 }}
         >
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div className="flex items-center gap-4">
               <Avatar
+                className="border-4 border-white shadow-lg"
+                icon={!session?.user.image ? <AvatarIcon /> : undefined}
                 size="lg"
                 src={session?.user.image ?? undefined}
-                icon={!session?.user.image ? <AvatarIcon /> : undefined}
-                className="border-4 border-white shadow-lg"
               />
 
               <div>
@@ -93,7 +84,6 @@ export default function DashboardPage() {
                 <div className="flex items-center gap-2 mt-1">
                   <Chip
                     color={isAdmin ? "warning" : "primary"}
-                    variant="flat"
                     startContent={
                       isAdmin ? (
                         <Shield className="w-4 h-4" />
@@ -101,6 +91,7 @@ export default function DashboardPage() {
                         <User className="w-4 h-4" />
                       )
                     }
+                    variant="flat"
                   >
                     {isAdmin ? "Administrator" : "User"}{" "}
                     {user.role && `(${user.role})`}
@@ -114,14 +105,11 @@ export default function DashboardPage() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <Tabs
-            selectedKey={selectedTab}
-            onSelectionChange={(key) => setSelectedTab(key as string)}
-            variant="underlined"
             classNames={{
               tabList:
                 "gap-6 w-full relative rounded-none p-0 border-b border-divider",
@@ -129,6 +117,9 @@ export default function DashboardPage() {
               tab: "max-w-fit px-0 h-12",
               tabContent: "group-data-[selected=true]:text-blue-600",
             }}
+            selectedKey={selectedTab}
+            variant="underlined"
+            onSelectionChange={(key) => setSelectedTab(key as string)}
           >
             {tabs.map((tab) => (
               <Tab

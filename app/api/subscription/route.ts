@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { headers } from "next/headers";
+
 import { db } from "@/index";
 import { subscription } from "@/db/schema";
-import { headers } from "next/headers";
 import { auth } from "@/utils/auth";
 
 const bodySchema = z.object({
@@ -21,6 +22,7 @@ export async function POST(req: Request) {
     const session = await auth.api.getSession({
       headers: await headers(),
     });
+
     if (!session?.user?.id) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
@@ -44,6 +46,7 @@ export async function POST(req: Request) {
       err instanceof z.ZodError
         ? err.issues.map((i) => i.message).join("; ")
         : "Internal Server Error";
+
     return NextResponse.json({ message }, { status: 400 });
   }
 }

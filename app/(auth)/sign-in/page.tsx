@@ -1,11 +1,9 @@
-import React from 'react'
-import SignInView from '@/components/auth-page/SignInView'
+import React from "react";
 
+import SignInView from "@/components/auth-page/SignInView";
 
 const page = () => {
-  return (
-    <SignInView/>
-  )
-}
+  return <SignInView />;
+};
 
-export default page
+export default page;

@@ -1,4 +1,4 @@
-export type SiteConfig = typeof siteConfig
+export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   name: "SEA Catering",
@@ -58,4 +58,4 @@ export const siteConfig = {
     discord: "https://discord.gg/seacatering",
     sponsor: "https://patreon.com/seacatering",
   },
-}
+};

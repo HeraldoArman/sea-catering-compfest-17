@@ -23,6 +23,7 @@ import {
   Utensils,
   AlertTriangle,
 } from "lucide-react";
+
 import { plans } from "@/components/meal";
 
 interface Subscription {
@@ -55,10 +56,12 @@ export function UserSubscriptions({ userId }: UserSubscriptionsProps) {
     setLoading(true);
     try {
       const response = await fetch("/api/subscriptions");
+
       if (!response.ok) {
         throw new Error("Failed to fetch subscriptions");
       }
       const data: Subscription[] = await response.json();
+
       setSubscriptions(data);
     } catch (error) {
       console.error("Failed to fetch subscriptions:", error);
@@ -94,7 +97,7 @@ export function UserSubscriptions({ userId }: UserSubscriptionsProps) {
 
   const handleSubscriptionAction = async (
     subscriptionId: string,
-    status: "active" | "paused" | "cancelled"
+    status: "active" | "paused" | "cancelled",
   ) => {
     try {
       const response = await fetch(
@@ -105,7 +108,7 @@ export function UserSubscriptions({ userId }: UserSubscriptionsProps) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ status }),
-        }
+        },
       );
 
       if (!response.ok) {
@@ -119,8 +122,8 @@ export function UserSubscriptions({ userId }: UserSubscriptionsProps) {
         prev.map((sub) =>
           sub.id === subscriptionId
             ? { ...sub, status: updatedSubscription.status }
-            : sub
-        )
+            : sub,
+        ),
       );
     } catch (error) {
       console.error(`Failed to ${status} subscription:`, error);
@@ -134,9 +137,9 @@ export function UserSubscriptions({ userId }: UserSubscriptionsProps) {
           <Card key={i} className="shadow-lg border-0">
             <CardBody className="p-6">
               <div className="animate-pulse space-y-4">
-                <div className="h-6 bg-gray-200 rounded w-1/3"></div>
-                <div className="h-4 bg-gray-200 rounded w-2/3"></div>
-                <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                <div className="h-6 bg-gray-200 rounded w-1/3" />
+                <div className="h-4 bg-gray-200 rounded w-2/3" />
+                <div className="h-4 bg-gray-200 rounded w-1/2" />
               </div>
             </CardBody>
           </Card>
@@ -186,8 +189,8 @@ export function UserSubscriptions({ userId }: UserSubscriptionsProps) {
             return (
               <motion.div
                 key={subscription.id}
-                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <Card className="shadow-lg border-0 hover:shadow-xl transition-all duration-300">
@@ -209,8 +212,8 @@ export function UserSubscriptions({ userId }: UserSubscriptionsProps) {
                                 color={
                                   getStatusColor(subscription.status) as any
                                 }
-                                variant="flat"
                                 size="sm"
+                                variant="flat"
                               >
                                 {subscription.status.charAt(0).toUpperCase() +
                                   subscription.status.slice(1)}
@@ -251,9 +254,9 @@ export function UserSubscriptions({ userId }: UserSubscriptionsProps) {
                       {/* Actions */}
                       <div className="flex flex-col sm:flex-row gap-2">
                         <Button
-                          variant="bordered"
                           size="sm"
                           startContent={<Edit className="w-4 h-4" />}
+                          variant="bordered"
                           onPress={() => {
                             setSelectedSubscription(subscription);
                             onOpen();
@@ -265,13 +268,13 @@ export function UserSubscriptions({ userId }: UserSubscriptionsProps) {
                         {subscription.status === "active" ? (
                           <Button
                             color="warning"
-                            variant="bordered"
                             size="sm"
                             startContent={<Pause className="w-4 h-4" />}
+                            variant="bordered"
                             onPress={() =>
                               handleSubscriptionAction(
                                 subscription.id,
-                                "paused"
+                                "paused",
                               )
                             }
                           >
@@ -280,13 +283,13 @@ export function UserSubscriptions({ userId }: UserSubscriptionsProps) {
                         ) : subscription.status === "paused" ? (
                           <Button
                             color="success"
-                            variant="bordered"
                             size="sm"
                             startContent={<Play className="w-4 h-4" />}
+                            variant="bordered"
                             onPress={() =>
                               handleSubscriptionAction(
                                 subscription.id,
-                                "active"
+                                "active",
                               )
                             }
                           >
@@ -296,13 +299,13 @@ export function UserSubscriptions({ userId }: UserSubscriptionsProps) {
                         {subscription.status !== "cancelled" ? (
                           <Button
                             color="danger"
-                            variant="bordered"
                             size="sm"
                             startContent={<Trash2 className="w-4 h-4" />}
+                            variant="bordered"
                             onPress={() =>
                               handleSubscriptionAction(
                                 subscription.id,
-                                "cancelled"
+                                "cancelled",
                               )
                             }
                           >
@@ -320,7 +323,7 @@ export function UserSubscriptions({ userId }: UserSubscriptionsProps) {
       )}
 
       {/* Edit Subscription Modal */}
-      <Modal isOpen={isOpen} onClose={onClose} size="2xl">
+      <Modal isOpen={isOpen} size="2xl" onClose={onClose}>
         <ModalContent>
           <ModalHeader>
             <h3 className="text-xl font-bold">Edit Subscription</h3>

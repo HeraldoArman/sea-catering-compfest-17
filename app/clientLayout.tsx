@@ -3,14 +3,17 @@
 import type React from "react";
 import "@/styles/globals.css";
 import type { Metadata, Viewport } from "next";
-import { usePathname } from "next/navigation";
-import { Footer } from "@/components/Footer";
-import { Providers } from "./providers";
 
-import { siteConfig } from "@/config/site";
-import { Navbar } from "@/components/navbar";
+import { usePathname } from "next/navigation";
 import { HeroUIProvider } from "@heroui/react";
 import { ToastProvider } from "@heroui/toast";
+
+import { Providers } from "./providers";
+
+import { Footer } from "@/components/Footer";
+import { siteConfig } from "@/config/site";
+import { Navbar } from "@/components/navbar";
+
 const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -29,7 +32,7 @@ const viewport: Viewport = {
 function LayoutContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
-  const hideNavbarPages = ["/sign-in", "/sign-up",];
+  const hideNavbarPages = ["/sign-in", "/sign-up"];
   const shouldHideNavbar = hideNavbarPages.includes(pathname);
 
   return (

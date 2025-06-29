@@ -17,6 +17,7 @@ export const CTASection = () => {
             rotate: 360,
             scale: [1, 1.2, 1],
           }}
+          className="absolute -top-40 -right-40 w-80 h-80 bg-white/10 rounded-full blur-3xl"
           transition={{
             rotate: {
               duration: 20,
@@ -29,13 +30,13 @@ export const CTASection = () => {
               ease: "easeInOut",
             },
           }}
-          className="absolute -top-40 -right-40 w-80 h-80 bg-white/10 rounded-full blur-3xl"
         />
         <motion.div
           animate={{
             rotate: -360,
             scale: [1.2, 1, 1.2],
           }}
+          className="absolute -bottom-40 -left-40 w-96 h-96 bg-white/10 rounded-full blur-3xl"
           transition={{
             rotate: {
               duration: 25,
@@ -48,17 +49,16 @@ export const CTASection = () => {
               ease: "easeInOut",
             },
           }}
-          className="absolute -bottom-40 -left-40 w-96 h-96 bg-white/10 rounded-full blur-3xl"
         />
       </div>
 
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
         <motion.div
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          whileInView={{ opacity: 1, y: 0 }}
         >
           <div className="flex items-center justify-center gap-2 mb-6">
             <Sparkles className="w-8 h-8 text-yellow-300" />
@@ -81,13 +81,12 @@ export const CTASection = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-
           <motion.div
+            className="space-y-6"
             initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            whileInView={{ opacity: 1, x: 0 }}
           >
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
@@ -128,9 +127,9 @@ export const CTASection = () => {
 
           <motion.div
             initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
+            whileInView={{ opacity: 1, x: 0 }}
           >
             <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-0">
               <CardBody className="p-8">
@@ -145,12 +144,12 @@ export const CTASection = () => {
 
                 <div className="space-y-4">
                   <Button
-                    type="submit"
-                    size="lg"
+                    as={Link}
                     className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                     endContent={<ArrowRight className="w-5 h-5" />}
-                    as={Link}
                     href="/subscription"
+                    size="lg"
+                    type="submit"
                   >
                     Claim Your Free Week
                   </Button>

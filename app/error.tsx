@@ -16,13 +16,13 @@ export default function Error({
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] bg-red-50 rounded-xl shadow-lg p-8">
       <h2 className="text-red-700 mb-4 text-2xl font-semibold">
-      Something went wrong!
+        Something went wrong!
       </h2>
       <button
-      onClick={() => reset()}
-      className="bg-blue-700 hover:bg-blue-800 text-white rounded-md px-6 py-2 text-base transition-colors"
+        className="bg-blue-700 hover:bg-blue-800 text-white rounded-md px-6 py-2 text-base transition-colors"
+        onClick={() => reset()}
       >
-      Try again
+        Try again
       </button>
     </div>
   );

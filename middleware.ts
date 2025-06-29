@@ -17,7 +17,7 @@ export async function middleware(request: NextRequest) {
   }
 
   const isProtectedRoute = protectedRoutes.some((route) =>
-    pathname.startsWith(route)
+    pathname.startsWith(route),
   );
 
   if (!isProtectedRoute) {
@@ -31,11 +31,14 @@ export async function middleware(request: NextRequest) {
 
     if (!sessionToken) {
       const signUpUrl = new URL("/sign-up", request.url);
+
       console.log("Redirecting to sign-up page due to missing session token");
+
       return NextResponse.redirect(signUpUrl);
     }
     console.log("Session token found, proceeding with request");
     console.log("Session Token:", sessionToken);
+
     return NextResponse.next();
   } catch (error) {
     console.error("Middleware auth error:", error);
@@ -45,6 +48,7 @@ export async function middleware(request: NextRequest) {
     const response = NextResponse.redirect(signUpUrl);
 
     response.cookies.delete("better-auth.session_token");
+
     return response;
   }
 }

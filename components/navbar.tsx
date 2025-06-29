@@ -19,8 +19,9 @@ import NextLink from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown, LogOut, LayoutDashboard } from "lucide-react";
 import Link from "next/link";
-import { authClient } from "@/utils/auth-client";
 import { useRouter } from "next/navigation";
+
+import { authClient } from "@/utils/auth-client";
 
 const navItems = [
   {
@@ -46,7 +47,9 @@ export const Navbar = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
+
     window.addEventListener("scroll", handleScroll);
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -56,6 +59,7 @@ export const Navbar = () => {
     } else {
       document.body.style.overflow = "unset";
     }
+
     return () => {
       document.body.style.overflow = "unset";
     };
@@ -69,6 +73,7 @@ export const Navbar = () => {
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
+
     return pathname.startsWith(href);
   };
 
@@ -83,30 +88,29 @@ export const Navbar = () => {
   return (
     <>
       <motion.div
-        initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 w-full transition-all duration-300 ${
           isScrolled
             ? "bg-white/98 backdrop-blur-xl border-b border-gray-200/80 shadow-xl"
             : "bg-white/95 backdrop-blur-xl border-b border-gray-200/50 shadow-lg"
         }`}
+        initial={{ y: -100 }}
         style={{
           zIndex: 9999,
           position: "fixed",
           isolation: "isolate",
         }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <HeroUINavbar
-          maxWidth="xl"
           className="bg-transparent relative w-full"
           classNames={{
             wrapper: "px-4 sm:px-6 py-2 relative w-full max-w-none",
             base: "bg-transparent w-full",
           }}
+          maxWidth="xl"
           style={{ zIndex: "inherit" }}
         >
-
           <NavbarContent className="basis-auto sm:basis-1/4" justify="start">
             <NavbarBrand as="li" className="gap-2 sm:gap-3 max-w-fit">
               <NextLink
@@ -115,9 +119,9 @@ export const Navbar = () => {
                 onClick={closeMobileMenu}
               >
                 <motion.div
+                  className="relative"
                   whileHover={{ scale: 1.05, rotate: 5 }}
                   whileTap={{ scale: 0.95 }}
-                  className="relative"
                 >
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300">
                     <span className="text-white font-bold text-lg sm:text-xl">
@@ -148,8 +152,8 @@ export const Navbar = () => {
                 <div key={item.href} className="relative">
                   <NextLink href={item.href} onClick={closeMobileMenu}>
                     <motion.div
-                      whileHover={{ y: -2 }}
                       className="relative group px-3 xl:px-4 py-2 rounded-xl transition-all duration-300"
+                      whileHover={{ y: -2 }}
                     >
                       <span
                         className={`font-medium transition-colors duration-300 text-sm xl:text-base whitespace-nowrap ${
@@ -163,8 +167,8 @@ export const Navbar = () => {
 
                       {isActive(item.href) && (
                         <motion.div
-                          layoutId="activeTab"
                           className="absolute inset-0 rounded-xl bg-blue-50 border border-blue-200"
+                          layoutId="activeTab"
                           style={{ zIndex: -1 }}
                         />
                       )}
@@ -189,18 +193,18 @@ export const Navbar = () => {
               <Dropdown placement="bottom-end">
                 <DropdownTrigger>
                   <Button
-                    variant="light"
                     className="p-0 min-w-0 h-auto relative z-10"
+                    variant="light"
                   >
                     <div className="flex items-center gap-2">
                       <p className="text-sm text-gray-700 font-medium px-1 hidden md:block">
                         {data?.user.name}
                       </p>
                       <Avatar
-                        size="sm"
                         className="border-2 border-gray-200"
-                        src={data?.user.image ?? undefined}
                         icon={!data?.user.image ? <AvatarIcon /> : undefined}
+                        size="sm"
+                        src={data?.user.image ?? undefined}
                       />
                       <ChevronDown className="w-4 h-4 text-gray-600 transition-colors duration-300" />
                     </div>
@@ -232,10 +236,10 @@ export const Navbar = () => {
             ) : (
               <div className="flex items-center gap-2">
                 <Button
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold px-4 sm:px-6 text-sm sm:text-base shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-                  radius="full"
                   as={Link}
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold px-4 sm:px-6 text-sm sm:text-base shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                   href="/sign-up"
+                  radius="full"
                 >
                   Get Started
                 </Button>
@@ -247,10 +251,10 @@ export const Navbar = () => {
             <div className="flex items-center gap-2">
               <Button
                 isIconOnly
-                variant="light"
                 className="text-gray-600 hover:text-blue-600 transition-colors duration-300 relative z-10"
-                onPress={handleMobileMenuToggle}
                 style={{ zIndex: 10 }}
+                variant="light"
+                onPress={handleMobileMenuToggle}
               >
                 <motion.div
                   animate={{ rotate: isMobileMenuOpen ? 180 : 0 }}
@@ -272,12 +276,10 @@ export const Navbar = () => {
         {isMobileMenuOpen && (
           <>
             <motion.div
-              initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
               className="fixed inset-0  backdrop-blur-sm lg:hidden"
-              onClick={closeMobileMenu}
+              exit={{ opacity: 0 }}
+              initial={{ opacity: 0 }}
               style={{
                 zIndex: 9998,
                 position: "fixed",
@@ -286,19 +288,21 @@ export const Navbar = () => {
                 right: 0,
                 bottom: 0,
               }}
+              transition={{ duration: 0.3 }}
+              onClick={closeMobileMenu}
             />
 
             <motion.div
-              initial={{ x: "100%" }}
               animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
               className="fixed top-0 right-0 h-full w-80 max-w-[90vw] bg-white/98 backdrop-blur-xl shadow-2xl lg:hidden overflow-y-auto"
+              exit={{ x: "100%" }}
+              initial={{ x: "100%" }}
               style={{
                 zIndex: 10000,
                 position: "fixed",
                 isolation: "isolate",
               }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
             >
               <div className="p-4 sm:p-6 h-full">
                 {/* Header */}
@@ -314,9 +318,9 @@ export const Navbar = () => {
                   </div>
                   <Button
                     isIconOnly
+                    className="relative z-10"
                     variant="light"
                     onPress={closeMobileMenu}
-                    className="relative z-10"
                   >
                     <X className="w-6 h-6" />
                   </Button>
@@ -327,18 +331,18 @@ export const Navbar = () => {
                   {navItems.map((item, index) => (
                     <motion.div
                       key={item.href}
-                      initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
+                      initial={{ opacity: 0, x: 20 }}
                       transition={{ delay: index * 0.1, duration: 0.3 }}
                     >
                       <NextLink
-                        href={item.href}
-                        onClick={closeMobileMenu}
                         className={`block p-4 rounded-xl transition-all duration-300 ${
                           isActive(item.href)
                             ? "bg-blue-50 border border-blue-200 text-blue-600"
                             : "hover:bg-gray-50 text-gray-700 active:bg-gray-100"
                         }`}
+                        href={item.href}
+                        onClick={closeMobileMenu}
                       >
                         <div className="font-medium">{item.label}</div>
                         <div className="text-sm text-gray-500 mt-1">
@@ -352,17 +356,17 @@ export const Navbar = () => {
                 {/* Mobile User Section */}
                 {!!data?.user ? (
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4, duration: 0.3 }}
                     className="mt-auto pt-6 border-t border-gray-200 space-y-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    transition={{ delay: 0.4, duration: 0.3 }}
                   >
                     {/* User Info Card */}
                     <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl">
                       <Avatar
-                        size="md"
                         className="border-2 border-gray-200"
                         icon={<AvatarIcon />}
+                        size="md"
                       />
                       <div className="flex-1 min-w-0">
                         <p className="font-semibold text-gray-900 truncate">
@@ -376,23 +380,23 @@ export const Navbar = () => {
 
                     <div className="space-y-2">
                       <Button
-                        variant="light"
                         className="w-full justify-start"
-                        startContent={<LayoutDashboard className="w-4 h-4" />}
-                        onClick={() => router.push("/dashboard")}
                         size="lg"
+                        startContent={<LayoutDashboard className="w-4 h-4" />}
+                        variant="light"
+                        onClick={() => router.push("/dashboard")}
                       >
                         dashboard
                       </Button>
                     </div>
                     <div className="space-y-2">
                       <Button
-                        variant="light"
-                        color="danger"
                         className="w-full justify-start"
-                        startContent={<LogOut className="w-4 h-4" />}
-                        onPress={onLogout}
+                        color="danger"
                         size="lg"
+                        startContent={<LogOut className="w-4 h-4" />}
+                        variant="light"
+                        onPress={onLogout}
                       >
                         Log Out
                       </Button>
@@ -401,10 +405,10 @@ export const Navbar = () => {
                 ) : (
                   <div className="mt-auto pt-6 border-t border-gray-200 space-y-4">
                     <Button
-                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold"
-                      size="lg"
                       as={Link}
+                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold"
                       href="/sign-up"
+                      size="lg"
                       onPress={closeMobileMenu}
                     >
                       Get Started

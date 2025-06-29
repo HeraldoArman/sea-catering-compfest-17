@@ -5,25 +5,24 @@ import { Card, CardBody } from "@heroui/card";
 import { ArrowRight, Star, Sparkles } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import { floatingCards } from "../meal";
 import Link from "next/link";
 
+import { floatingCards } from "../meal";
 
 export const Hero = () => {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 150]);
 
-
   return (
     <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          style={{ y }}
           className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-purple-600/20 rounded-full blur-3xl"
+          style={{ y }}
         />
         <motion.div
-          style={{ y: useTransform(scrollY, [0, 500], [0, -100]) }}
           className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-emerald-400/20 to-teal-600/20 rounded-full blur-3xl"
+          style={{ y: useTransform(scrollY, [0, 500], [0, -100]) }}
         />
 
         <motion.div
@@ -31,6 +30,7 @@ export const Hero = () => {
             rotate: 360,
             scale: [1, 1.1, 1],
           }}
+          className="absolute top-20 right-20 w-16 h-16 border-2 border-blue-300/30 rounded-lg"
           transition={{
             rotate: {
               duration: 20,
@@ -43,13 +43,13 @@ export const Hero = () => {
               ease: "easeInOut",
             },
           }}
-          className="absolute top-20 right-20 w-16 h-16 border-2 border-blue-300/30 rounded-lg"
         />
         <motion.div
           animate={{
             rotate: -360,
             y: [0, -20, 0],
           }}
+          className="absolute bottom-32 right-32 w-8 h-8 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full"
           transition={{
             rotate: {
               duration: 15,
@@ -62,7 +62,6 @@ export const Hero = () => {
               ease: "easeInOut",
             },
           }}
-          className="absolute bottom-32 right-32 w-8 h-8 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full"
         />
       </div>
 
@@ -70,16 +69,16 @@ export const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
           {/* Left Content */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
             className="space-y-10"
+            initial={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
               className="space-y-5"
+              initial={{ opacity: 0, y: 30 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
             >
               <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
                 <span className="bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent">
@@ -99,24 +98,24 @@ export const Hero = () => {
 
             {/* Stats */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
               className="flex items-center gap-8"
+              initial={{ opacity: 0, y: 20 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
             >
               <div className="flex items-center gap-2">
                 <div className="flex -space-x-2">
-                    {[1, 2, 3, 4].map((i) => (
+                  {[1, 2, 3, 4].map((i) => (
                     <Image
                       key={i}
-                      src={`https://randomuser.me/api/portraits/women/${i}.jpg`}
-                      alt={`User ${i}`}
-                      width={32}
-                      height={32}
-                      className="w-8 h-8 rounded-full border-2 border-white object-cover"
                       unoptimized
+                      alt={`User ${i}`}
+                      className="w-8 h-8 rounded-full border-2 border-white object-cover"
+                      height={32}
+                      src={`https://randomuser.me/api/portraits/women/${i}.jpg`}
+                      width={32}
                     />
-                    ))}
+                  ))}
                 </div>
                 <div className="ml-2">
                   <div className="flex items-center gap-1">
@@ -130,17 +129,17 @@ export const Hero = () => {
 
             {/* CTA Buttons */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
               className="flex flex-col sm:flex-row gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
             >
               <Button
-                size="lg"
+                as={Link}
                 className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold px-8 py-6 text-lg rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                 endContent={<ArrowRight className="w-5 h-5" />}
-                                    as={Link}
-                    href="/subscription"
+                href="/subscription"
+                size="lg"
               >
                 Start Your Journey
               </Button>
@@ -149,20 +148,27 @@ export const Hero = () => {
 
           {/* Right Content - Floating Cards */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
             className="relative h-[600px] hidden lg:block"
+            initial={{ opacity: 0, scale: 0.8 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
           >
             {floatingCards.map((card, index) => (
               <motion.div
                 key={card.id}
-                initial={{ opacity: 0, y: 50, rotate: -10 }}
                 animate={{
                   opacity: 1,
                   y: 0,
                   rotate: index % 2 === 0 ? 5 : -5,
                 }}
+                className={`absolute ${
+                  index === 0
+                    ? "top-0 left-0"
+                    : index === 1
+                      ? "top-32 right-0"
+                      : "bottom-0 left-16"
+                }`}
+                initial={{ opacity: 0, y: 50, rotate: -10 }}
                 transition={{
                   delay: card.delay + 0.8,
                   duration: 0.8,
@@ -174,13 +180,6 @@ export const Hero = () => {
                   rotate: 0,
                   transition: { duration: 0.3 },
                 }}
-                className={`absolute ${
-                  index === 0
-                    ? "top-0 left-0"
-                    : index === 1
-                      ? "top-32 right-0"
-                      : "bottom-0 left-16"
-                }`}
               >
                 <Card className="w-72 bg-white/90 backdrop-blur-md shadow-2xl border-0 overflow-hidden">
                   <CardBody className="p-0">
@@ -188,11 +187,11 @@ export const Hero = () => {
                     <div className="p-6">
                       <div className="relative h-32 mb-4 rounded-xl overflow-hidden">
                         <Image
-                          src={card.image || "/placeholder.svg"}
-                          alt={card.title}
                           fill
-                          className="object-cover"
                           unoptimized
+                          alt={card.title}
+                          className="object-cover"
+                          src={card.image || "/placeholder.svg"}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                       </div>
@@ -225,12 +224,12 @@ export const Hero = () => {
                 y: [0, -20, 0],
                 rotate: [0, 5, 0],
               }}
+              className="absolute top-20 right-20 w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg"
               transition={{
                 duration: 4,
                 repeat: Number.POSITIVE_INFINITY,
                 ease: "easeInOut",
               }}
-              className="absolute top-20 right-20 w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg"
             >
               <Sparkles className="w-8 h-8 text-white" />
             </motion.div>
@@ -242,9 +241,9 @@ export const Hero = () => {
       <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none">
         <svg
           className="w-full h-24"
-          viewBox="0 0 1200 120"
           fill="none"
           preserveAspectRatio="none"
+          viewBox="0 0 1200 120"
         >
           <path
             d="M0 120C200 80 400 40 600 60C800 80 1000 40 1200 60V120H0Z"

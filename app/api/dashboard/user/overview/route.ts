@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
+import { eq, sum, count } from "drizzle-orm";
+import { headers } from "next/headers";
+
 import { db } from "@/index";
 import { subscription } from "@/db/schema";
 import { auth } from "@/utils/auth";
-import { eq, sum, count } from "drizzle-orm";
-import { headers } from "next/headers";
 
 export async function GET() {
   try {
@@ -39,12 +40,15 @@ export async function GET() {
     const activeSubscriptions = await db
       .select()
       .from(subscription)
-      .where(eq(subscription.status, "active") && eq(subscription.userId, userId));
+      .where(
+        eq(subscription.status, "active") && eq(subscription.userId, userId),
+      );
 
-      
     console.log("Active Subscriptions:", activeSubscriptions);
     const activeSubscriptionsCount = activeSubscriptions.length;
+
     console.log(activeSubscriptionsCount);
+
     return NextResponse.json({
       mySubscriptions,
       mealsDelivered,
@@ -53,9 +57,10 @@ export async function GET() {
     });
   } catch (error) {
     console.error("Dashboard API Error:", error);
+
     return NextResponse.json(
       { error: "Internal Server Error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

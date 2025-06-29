@@ -49,7 +49,7 @@ export const TestimonialsCarousel = () => {
 
   const prevTestimonial = () => {
     setCurrentIndex(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length
+      (prev) => (prev - 1 + testimonials.length) % testimonials.length,
     );
   };
 
@@ -66,11 +66,11 @@ export const TestimonialsCarousel = () => {
     <section className="py-24 bg-gradient-to-br from-purple-50 to-pink-50">
       <div className="container mx-auto px-6 max-w-6xl">
         <motion.div
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          whileInView={{ opacity: 1, y: 0 }}
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
             What Our{" "}
@@ -88,9 +88,9 @@ export const TestimonialsCarousel = () => {
           <AnimatePresence mode="wait">
             <motion.div
               key={currentIndex}
-              initial={{ opacity: 0, scale: 0.8, rotateY: 90 }}
               animate={{ opacity: 1, scale: 1, rotateY: 0 }}
               exit={{ opacity: 0, scale: 0.8, rotateY: -90 }}
+              initial={{ opacity: 0, scale: 0.8, rotateY: 90 }}
               transition={{ duration: 0.4, ease: "easeInOut" }}
             >
               <Card className="bg-white/80 backdrop-blur-sm shadow-2xl border-0 overflow-hidden">
@@ -102,7 +102,7 @@ export const TestimonialsCarousel = () => {
                   </div>
 
                   <blockquote className="text-2xl text-gray-700 mb-8 leading-relaxed font-medium">
-                    "{testimonials[currentIndex].quote}"
+                    Don&apos;t have an account?{" "}
                   </blockquote>
 
                   <div className="flex justify-center mb-6">
@@ -111,10 +111,10 @@ export const TestimonialsCarousel = () => {
 
                   <div className="flex items-center justify-center gap-4">
                     <Avatar
-                      src={testimonials[currentIndex].avatar}
                       alt={testimonials[currentIndex].name}
-                      size="lg"
                       className="border-4 border-white shadow-lg"
+                      size="lg"
+                      src={testimonials[currentIndex].avatar}
                     />
                     <div className="text-left">
                       <h4 className="font-bold text-gray-900 text-lg">
@@ -133,9 +133,9 @@ export const TestimonialsCarousel = () => {
           {/* Navigation */}
           <Button
             isIconOnly
-            variant="solid"
-            color="primary"
             className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 shadow-lg"
+            color="primary"
+            variant="solid"
             onPress={prevTestimonial}
           >
             <ChevronLeft className="w-5 h-5" />
@@ -143,25 +143,24 @@ export const TestimonialsCarousel = () => {
 
           <Button
             isIconOnly
-            variant="solid"
-            color="primary"
             className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 shadow-lg"
+            color="primary"
+            variant="solid"
             onPress={nextTestimonial}
           >
             <ChevronRight className="w-5 h-5" />
           </Button>
 
-
           <div className="flex justify-center mt-8 gap-2">
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                onClick={() => setCurrentIndex(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   index === currentIndex
                     ? "bg-purple-500 scale-125"
                     : "bg-purple-200 hover:bg-purple-300"
                 }`}
+                onClick={() => setCurrentIndex(index)}
               />
             ))}
           </div>

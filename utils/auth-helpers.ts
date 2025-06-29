@@ -1,5 +1,6 @@
-import { auth } from "./auth";
 import { headers } from "next/headers";
+
+import { auth } from "./auth";
 
 export async function getCurrentUser() {
   try {
@@ -10,6 +11,7 @@ export async function getCurrentUser() {
     return session?.user || null;
   } catch (error) {
     console.error("Error getting current user:", error);
+
     return null;
   }
 }
