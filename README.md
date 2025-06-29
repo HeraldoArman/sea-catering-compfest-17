@@ -14,7 +14,7 @@ Proyek ini dibangun menggunakan tumpukan teknologi modern yang berfokus pada kin
   * **UI Komponen**: [HeroUI](https://heroui.com/)
   * **Styling**: [Tailwind CSS](https://tailwindcss.com/) 
   * **ORM**: [Drizzle ORM](https://orm.drizzle.team/) 
-  * **Autentikasi**: [Better Auth](https://www.google.com/search?q=https://better-auth.dev/)
+  * **Autentikasi**: [Better Auth](https://www.better-auth.com/)
   * **Bahasa Pemrograman**: [TypeScript](https://www.typescriptlang.org/)
   * **Animasi**: [Framer Motion](https://www.framer.com/motion/) 
   * **Database**: PostgreSQL dengan [Neon](https://neon.com/)
@@ -48,7 +48,7 @@ Pastikan Anda memiliki Node.js (versi 18.18.0 atau lebih baru direkomendasikan) 
 ### 1\. Clone Repository
 
 ```bash
-git clone https://github.com/heraldoarman/sea-catering.git
+git clone https://github.com/heraldoarman/sea-catering.git sea-catering
 cd sea-catering
 ```
 
@@ -62,7 +62,7 @@ npm install --legacy-peer-deps
 
 ### 3\. Pengaturan Enviroment Variable untuk local
 
-Buat file `.env` di direktori root proyek Anda dan tambahkan variabel lingkungan berikut.
+Buat file `.env` di direktori root proyek Anda dan tambahkan enviroment variable berikut.
 
 ```env
 NEXT_PUBLIC_APP_URL="http://localhost:3000"
