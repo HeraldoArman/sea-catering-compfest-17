@@ -282,6 +282,7 @@ export const SubscriptionForm = () => {
                                       alt={plan.name}
                                       className="w-full h-40 object-cover"
                                       src={plan.image}
+                                      unoptimized
                                     />
                                     <CardBody className="p-4 text-center">
                                       <h4 className="font-bold text-lg text-gray-900 mb-1">
