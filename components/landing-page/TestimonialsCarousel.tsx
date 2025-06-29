@@ -49,7 +49,7 @@ export const TestimonialsCarousel = () => {
 
   const prevTestimonial = () => {
     setCurrentIndex(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length,
+      (prev) => (prev - 1 + testimonials.length) % testimonials.length
     );
   };
 
@@ -102,7 +102,7 @@ export const TestimonialsCarousel = () => {
                   </div>
 
                   <blockquote className="text-2xl text-gray-700 mb-8 leading-relaxed font-medium">
-                    Don&apos;t have an account?{" "}
+                    &ldquo;{testimonials[currentIndex].quote}&rdquo;
                   </blockquote>
 
                   <div className="flex justify-center mb-6">
